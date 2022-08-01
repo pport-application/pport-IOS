@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="PortfolioCollectionViewCell" reuseIdentifier="" id="NX2-GK-jpB" customClass="SearchCollectionViewCell" customModule="pport" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="128"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="apE-eB-yFf">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="128"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rsN-i5-D9j">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="128"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="zbr-xD-Dvk">
+                                <rect key="frame" x="8" y="8" width="398" height="112"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="THf-Q1-lw4">
+                                        <rect key="frame" x="0.0" y="0.0" width="43" height="112"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ngl-Zu-qUb" userLabel="Symbol">
+                                                <rect key="frame" x="0.0" y="0.0" width="43" height="14.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TCZ-2W-M6q">
+                                                <rect key="frame" x="0.0" y="14.5" width="43" height="83"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="de3-l2-tNx" userLabel="Exchange">
+                                                <rect key="frame" x="0.0" y="97.5" width="43" height="14.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rwi-xW-tsc">
+                                        <rect key="frame" x="51" y="0.0" width="227" height="112"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v4b-nK-wOS">
+                                        <rect key="frame" x="286" y="0.0" width="112" height="112"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="v4b-nK-wOS" secondAttribute="height" multiplier="1:1" id="Vjh-wT-mko"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="star" catalog="system"/>
+                                        <connections>
+                                            <action selector="addBtnTapped:" destination="NX2-GK-jpB" eventType="touchUpInside" id="LeQ-1y-zkU"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="zbr-xD-Dvk" firstAttribute="leading" secondItem="rsN-i5-D9j" secondAttribute="leading" constant="8" id="2Ad-rJ-Z1d"/>
+                            <constraint firstAttribute="bottom" secondItem="zbr-xD-Dvk" secondAttribute="bottom" constant="8" id="g6i-bI-98l"/>
+                            <constraint firstAttribute="trailing" secondItem="zbr-xD-Dvk" secondAttribute="trailing" constant="8" id="ulD-4k-hfS"/>
+                            <constraint firstItem="zbr-xD-Dvk" firstAttribute="top" secondItem="rsN-i5-D9j" secondAttribute="top" constant="8" id="xMD-MC-Hib"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="rsN-i5-D9j" firstAttribute="top" secondItem="apE-eB-yFf" secondAttribute="top" id="CDQ-sb-Xrc"/>
+                    <constraint firstItem="rsN-i5-D9j" firstAttribute="leading" secondItem="apE-eB-yFf" secondAttribute="leading" id="Uy5-Xf-SM0"/>
+                    <constraint firstAttribute="bottom" secondItem="rsN-i5-D9j" secondAttribute="bottom" id="i7n-ng-bhk"/>
+                    <constraint firstAttribute="trailing" secondItem="rsN-i5-D9j" secondAttribute="trailing" id="kN6-bQ-Bwp"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <size key="customSize" width="414" height="128"/>
+            <connections>
+                <outlet property="addBtn" destination="v4b-nK-wOS" id="p3e-Mj-Ag3"/>
+                <outlet property="exchangeLabel" destination="de3-l2-tNx" id="nAR-YJ-GwO"/>
+                <outlet property="nameLabel" destination="TCZ-2W-M6q" id="Lml-Wt-f4r"/>
+                <outlet property="symbolLabel" destination="Ngl-Zu-qUb" id="6uF-gK-gRX"/>
+            </connections>
+            <point key="canvasLocation" x="15.942028985507248" y="12.723214285714285"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="star" catalog="system" width="128" height="116"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
