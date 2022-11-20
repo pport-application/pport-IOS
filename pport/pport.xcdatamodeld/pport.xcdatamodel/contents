@@ -1,10 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="21E230" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="WatchListItem" representedClassName="WatchListItem" isAbstract="YES" syncable="YES">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21512" systemVersion="21G217" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="HistoryItemEntity" representedClassName="HistoryItemEntity" syncable="YES">
+        <attribute name="amount" optional="YES" attributeType="String"/>
+        <attribute name="balance" optional="YES" attributeType="String"/>
+        <attribute name="count" optional="YES" attributeType="String"/>
+        <attribute name="currency" optional="YES" attributeType="String"/>
+        <attribute name="from" optional="YES" attributeType="String"/>
+        <attribute name="net_worth" optional="YES" attributeType="String"/>
+        <attribute name="revenue" optional="YES" attributeType="String"/>
+        <attribute name="ticker" optional="YES" attributeType="String"/>
+        <attribute name="timestamp" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="PortfolioItemEntity" representedClassName="PortfolioItemEntity" syncable="YES">
+        <attribute name="portfolio" optional="YES" attributeType="Binary"/>
+        <attribute name="wallet" optional="YES" attributeType="Binary"/>
+    </entity>
+    <entity name="WatchlistItemEntity" representedClassName="WatchlistItemEntity" isAbstract="YES" syncable="YES">
         <attribute name="change" optional="YES" attributeType="String"/>
         <attribute name="change_p" optional="YES" attributeType="String"/>
         <attribute name="close" optional="YES" attributeType="String"/>
-        <attribute name="code" optional="YES" attributeType="String"/>
+        <attribute name="code" attributeType="String"/>
         <attribute name="high" optional="YES" attributeType="String"/>
         <attribute name="low" optional="YES" attributeType="String"/>
         <attribute name="open" optional="YES" attributeType="String"/>
@@ -12,7 +28,4 @@
         <attribute name="timestamp" optional="YES" attributeType="String"/>
         <attribute name="volume" optional="YES" attributeType="String"/>
     </entity>
-    <elements>
-        <element name="WatchListItem" positionX="-63" positionY="-18" width="128" height="179"/>
-    </elements>
 </model>

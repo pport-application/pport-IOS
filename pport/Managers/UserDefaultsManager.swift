@@ -30,11 +30,9 @@ class UserDefaultsManager: NSObject {
     }
     
     func removeAll() {
-        UserDefaults.standard.removeObject(forKey: "session")
         UserDefaults.standard.removeObject(forKey: "email")
         UserDefaults.standard.removeObject(forKey: "name")
         UserDefaults.standard.removeObject(forKey: "surname")
-        UserDefaults.standard.removeObject(forKey: "user_id")
         UserDefaults.standard.removeObject(forKey: "watchlist")
     }
 }

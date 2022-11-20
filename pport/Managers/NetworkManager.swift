@@ -16,13 +16,14 @@ class NetworkManager: NSObject {
         
         monitor.pathUpdateHandler = { pathUpdateHandler in
             if pathUpdateHandler.status == .satisfied {
-                NSLog("Internet connection is on.", "")
                 isAvailable()
+                monitor.cancel()
             } else {
-                NSLog("There's no internet connection.", "")
                 notAvailable()
+                monitor.cancel()
             }
-            
         }
+        
+        monitor.start(queue: DispatchQueue(label: "NetworkMonitor"))
     }
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="A4W-RX-oo4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="A4W-RX-oo4">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -15,7 +15,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="A4W-RX-oo4" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="U9L-Kp-E4H">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -103,13 +103,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rfG-3b-zXd">
-                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <rect key="frame" x="0.0" y="48" width="414" height="848"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lhw-oA-IiN">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1418"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1414"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A9g-N2-8gl">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="814"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="pport" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OmG-3r-c2D">
                                                         <rect key="frame" x="24" y="8" width="366" height="65"/>
@@ -118,7 +118,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="jQE-JG-wxO">
-                                                        <rect key="frame" x="24" y="214" width="366" height="390.5"/>
+                                                        <rect key="frame" x="24" y="212" width="366" height="390.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="AUD-6t-q7d">
                                                                 <rect key="frame" x="0.0" y="0.0" width="366" height="68.5"/>
@@ -218,7 +218,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="MHA-3k-kGY">
-                                                        <rect key="frame" x="24" y="703" width="366" height="91"/>
+                                                        <rect key="frame" x="24" y="695.5" width="366" height="94.5"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="axJ-n4-QGg">
                                                                 <rect key="frame" x="0.0" y="0.0" width="366" height="60"/>
@@ -241,7 +241,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gim-kE-f9P">
-                                                                <rect key="frame" x="0.0" y="60" width="366" height="31"/>
+                                                                <rect key="frame" x="0.0" y="60" width="366" height="34.5"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="plain" title="Go Back"/>
                                                                 <connections>
@@ -266,7 +266,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MSn-eb-j8L">
-                                                <rect key="frame" x="0.0" y="818" width="414" height="600"/>
+                                                <rect key="frame" x="0.0" y="814" width="414" height="600"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="600" id="t8k-mQ-jsA"/>
@@ -330,10 +330,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sCI-hH-fML">
-                                <rect key="frame" x="0.0" y="44" width="414" height="703"/>
+                                <rect key="frame" x="0.0" y="48" width="414" height="695.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jQl-5f-T2P">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="814"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="pport" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iE6-y5-RaM">
                                                 <rect key="frame" x="24" y="8" width="366" height="64"/>
@@ -345,7 +345,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="rbL-8A-Xgy">
-                                                <rect key="frame" x="24" y="303.5" width="366" height="211"/>
+                                                <rect key="frame" x="24" y="301.5" width="366" height="211"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="EWa-Zi-2KX">
                                                         <rect key="frame" x="0.0" y="0.0" width="366" height="68.5"/>
@@ -430,7 +430,7 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="kPY-7A-7UM"/>
                             </scrollView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="0l6-bO-sAM">
-                                <rect key="frame" x="24" y="747" width="366" height="91"/>
+                                <rect key="frame" x="24" y="743.5" width="366" height="94.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GZS-TX-yYe">
                                         <rect key="frame" x="0.0" y="0.0" width="366" height="60"/>
@@ -446,11 +446,11 @@
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="signInBtnTapped:" destination="uRY-Jp-hSy" eventType="touchUpInside" id="TRu-92-eKc"/>
-                                            <action selector="singInBtnTapped:" destination="3RP-hL-hXR" eventType="touchUpInside" id="vsp-Cr-lqb"/>
+                                            <action selector="signInBtnTapped:" destination="3RP-hL-hXR" eventType="touchUpInside" id="Z9b-sf-UAI"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XEz-QH-cyV">
-                                        <rect key="frame" x="0.0" y="60" width="366" height="31"/>
+                                        <rect key="frame" x="0.0" y="60" width="366" height="34.5"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Go Back"/>
                                         <connections>
@@ -495,10 +495,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sOy-Pr-ntB">
-                                <rect key="frame" x="0.0" y="44" width="414" height="703"/>
+                                <rect key="frame" x="0.0" y="48" width="414" height="695.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1RI-y8-qjz">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="814"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="pport" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P6B-Gc-qB1">
                                                 <rect key="frame" x="24" y="8" width="366" height="64"/>
@@ -510,7 +510,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="YLc-3m-UE6">
-                                                <rect key="frame" x="24" y="375" width="366" height="68.5"/>
+                                                <rect key="frame" x="24" y="373" width="366" height="68.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="PeI-Fe-adj">
                                                         <rect key="frame" x="0.0" y="0.0" width="366" height="68.5"/>
@@ -556,7 +556,7 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="hLq-qr-IUk"/>
                             </scrollView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="SDM-BB-e79">
-                                <rect key="frame" x="24" y="747" width="366" height="91"/>
+                                <rect key="frame" x="24" y="743.5" width="366" height="94.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gri-bg-Wxb">
                                         <rect key="frame" x="0.0" y="0.0" width="366" height="60"/>
@@ -576,7 +576,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lT3-KB-n06">
-                                        <rect key="frame" x="0.0" y="60" width="366" height="31"/>
+                                        <rect key="frame" x="0.0" y="60" width="366" height="34.5"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Go Back"/>
                                         <connections>
@@ -619,10 +619,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Cn-La-qpM">
-                                <rect key="frame" x="0.0" y="44" width="414" height="703"/>
+                                <rect key="frame" x="0.0" y="48" width="414" height="695.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Pt-qR-TRR">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="814"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="pport" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iee-rK-rk1">
                                                 <rect key="frame" x="24" y="8" width="366" height="65"/>
@@ -631,7 +631,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="E7v-3b-i02">
-                                                <rect key="frame" x="24" y="375" width="366" height="68.5"/>
+                                                <rect key="frame" x="24" y="373" width="366" height="68.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="8dg-DW-rPb">
                                                         <rect key="frame" x="0.0" y="0.0" width="366" height="68.5"/>
@@ -677,7 +677,7 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="hi6-lk-RcK"/>
                             </scrollView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="EJm-uO-4HV">
-                                <rect key="frame" x="24" y="747" width="366" height="91"/>
+                                <rect key="frame" x="24" y="743.5" width="366" height="94.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ecL-Fd-fV2">
                                         <rect key="frame" x="0.0" y="0.0" width="366" height="60"/>
@@ -698,7 +698,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FHW-Cd-wkB">
-                                        <rect key="frame" x="0.0" y="60" width="366" height="31"/>
+                                        <rect key="frame" x="0.0" y="60" width="366" height="34.5"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Go Back"/>
                                         <connections>
@@ -742,10 +742,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jE7-fn-l5c">
-                                <rect key="frame" x="0.0" y="44" width="414" height="703"/>
+                                <rect key="frame" x="0.0" y="48" width="414" height="695.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oL2-G6-GZU">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="814"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="pport" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bb1-yX-vdp">
                                                 <rect key="frame" x="24" y="8" width="366" height="65"/>
@@ -754,7 +754,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="ib4-Er-1MU">
-                                                <rect key="frame" x="24" y="334.5" width="366" height="149"/>
+                                                <rect key="frame" x="24" y="332.5" width="366" height="149"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ujS-ha-Yod">
                                                         <rect key="frame" x="0.0" y="0.0" width="366" height="68.5"/>
@@ -819,7 +819,7 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="7kV-E5-xV9"/>
                             </scrollView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6Jy-jm-2Pk">
-                                <rect key="frame" x="24" y="747" width="366" height="91"/>
+                                <rect key="frame" x="24" y="743.5" width="366" height="94.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="exe-Sq-abJ">
                                         <rect key="frame" x="0.0" y="0.0" width="366" height="60"/>
@@ -840,7 +840,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PiM-qa-OYc">
-                                        <rect key="frame" x="0.0" y="60" width="366" height="31"/>
+                                        <rect key="frame" x="0.0" y="60" width="366" height="34.5"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Go Back"/>
                                         <connections>
