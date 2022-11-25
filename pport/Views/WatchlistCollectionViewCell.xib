@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WatchlistCollectionViewCell" customModule="pport" customModuleProvider="target"/>
-        <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="WatchlistCollectionviewCell" reuseIdentifier="" id="J3Q-yg-PoX" customClass="WatchlistCollectionViewCell" customModule="pport" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="128"/>
+        <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="WatchlistCollectionviewCell" reuseIdentifier="WatchlistCollectionViewCell" id="J3Q-yg-PoX" customClass="WatchlistCollectionViewCell" customModule="pport" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="411" height="128"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="WxO-5J-HyA">
-                <rect key="frame" x="0.0" y="0.0" width="414" height="128"/>
+                <rect key="frame" x="0.0" y="0.0" width="411" height="128"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Wv-xS-pLy">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="128"/>
+                        <rect key="frame" x="0.0" y="0.0" width="411" height="128"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="rHv-Tf-VIr">
-                                <rect key="frame" x="8" y="8" width="398" height="112"/>
+                                <rect key="frame" x="8" y="8" width="387" height="112"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="xus-B2-god">
-                                        <rect key="frame" x="0.0" y="0.0" width="278" height="112"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="xus-B2-god">
+                                        <rect key="frame" x="0.0" y="0.0" width="232" height="112"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="---" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4aJ-rN-xAL" userLabel="Symbol Label">
-                                                <rect key="frame" x="0.0" y="0.0" width="278" height="56"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1" verticalHuggingPriority="1" text="---" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4aJ-rN-xAL" userLabel="Symbol Label">
+                                                <rect key="frame" x="0.0" y="0.0" width="232" height="56"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="---" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r4x-JT-5CE" userLabel="Date Label">
-                                                <rect key="frame" x="0.0" y="56" width="278" height="56"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1" verticalHuggingPriority="1" text="---" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r4x-JT-5CE" userLabel="Date Label">
+                                                <rect key="frame" x="0.0" y="56" width="232" height="56"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -43,23 +43,23 @@
                                             <constraint firstItem="4aJ-rN-xAL" firstAttribute="height" secondItem="r4x-JT-5CE" secondAttribute="height" id="ksV-XS-Wp4"/>
                                         </constraints>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--.--" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="76p-aR-hVY" userLabel="Latest Value Label">
-                                        <rect key="frame" x="286" y="0.0" width="112" height="112"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="76p-aR-hVY" secondAttribute="height" multiplier="1:1" id="hm9-FC-phx"/>
-                                        </constraints>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1" verticalHuggingPriority="1" text="--.--" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="76p-aR-hVY" userLabel="Latest Value Label">
+                                        <rect key="frame" x="240" y="0.0" width="147" height="112"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="xus-B2-god" firstAttribute="width" secondItem="rHv-Tf-VIr" secondAttribute="width" multiplier="0.6" id="UTO-kG-cv0"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="rHv-Tf-VIr" firstAttribute="leading" secondItem="4Wv-xS-pLy" secondAttribute="leading" constant="8" id="22a-rn-Ylh"/>
                             <constraint firstAttribute="bottom" secondItem="rHv-Tf-VIr" secondAttribute="bottom" constant="8" id="J3R-Ep-zD3"/>
-                            <constraint firstAttribute="trailing" secondItem="rHv-Tf-VIr" secondAttribute="trailing" constant="8" id="JVE-uR-nYl"/>
+                            <constraint firstAttribute="trailing" secondItem="rHv-Tf-VIr" secondAttribute="trailing" constant="16" id="JVE-uR-nYl"/>
                             <constraint firstItem="rHv-Tf-VIr" firstAttribute="top" secondItem="4Wv-xS-pLy" secondAttribute="top" constant="8" id="QiP-aX-w0a"/>
                         </constraints>
                     </view>
@@ -71,13 +71,13 @@
                     <constraint firstAttribute="trailing" secondItem="4Wv-xS-pLy" secondAttribute="trailing" id="xkI-vQ-3Lv"/>
                 </constraints>
             </collectionViewCellContentView>
-            <size key="customSize" width="414" height="128"/>
+            <size key="customSize" width="411" height="128"/>
             <connections>
                 <outlet property="dateLabel" destination="r4x-JT-5CE" id="I72-K4-auz"/>
                 <outlet property="latestValueLabel" destination="76p-aR-hVY" id="dy2-Je-Pem"/>
                 <outlet property="symbolLabel" destination="4aJ-rN-xAL" id="Yy0-1z-CjU"/>
             </connections>
-            <point key="canvasLocation" x="17" y="13"/>
+            <point key="canvasLocation" x="13.768115942028986" y="12.723214285714285"/>
         </collectionViewCell>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
     </objects>

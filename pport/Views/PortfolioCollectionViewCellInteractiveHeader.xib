@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="PortfolioCollectionViewCellInteractiveHeader" reuseIdentifier="PortfolioCollectionViewCellInteractiveHeader" id="hT1-TT-Jn2" customClass="PortfolioCollectionViewCellInteractiveHeader" customModule="pport" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="41Q-4l-oLY">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="50"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1" verticalHuggingPriority="1" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WmN-qX-ZQW">
+                            <rect key="frame" x="8" y="8" width="377" height="34"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="WmN-qX-ZQW" secondAttribute="bottom" constant="8" id="7fc-md-wf8"/>
+                        <constraint firstAttribute="trailing" secondItem="WmN-qX-ZQW" secondAttribute="trailing" constant="8" id="IdW-fx-Ypi"/>
+                        <constraint firstItem="WmN-qX-ZQW" firstAttribute="top" secondItem="41Q-4l-oLY" secondAttribute="top" constant="8" id="Ny2-oL-m0N"/>
+                        <constraint firstItem="WmN-qX-ZQW" firstAttribute="leading" secondItem="41Q-4l-oLY" secondAttribute="leading" constant="8" id="ssb-6M-Rgy"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="eoO-v5-brD"/>
+            <constraints>
+                <constraint firstItem="eoO-v5-brD" firstAttribute="trailing" secondItem="41Q-4l-oLY" secondAttribute="trailing" id="5oh-WK-KoE"/>
+                <constraint firstItem="41Q-4l-oLY" firstAttribute="leading" secondItem="eoO-v5-brD" secondAttribute="leading" id="aDf-iV-JyU"/>
+                <constraint firstItem="41Q-4l-oLY" firstAttribute="top" secondItem="hT1-TT-Jn2" secondAttribute="top" id="opS-7A-ED9"/>
+                <constraint firstAttribute="bottom" secondItem="41Q-4l-oLY" secondAttribute="bottom" id="zro-av-hAy"/>
+            </constraints>
+            <connections>
+                <outlet property="collectionViewSectionTitle" destination="WmN-qX-ZQW" id="ioS-wq-sKq"/>
+            </connections>
+            <point key="canvasLocation" x="834" y="-11"/>
+        </collectionReusableView>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -18,9 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
         
-        if let _ = UserDefaultsManager.shared.get(forKey: "session"),
-           let _ = UserDefaultsManager.shared.get(forKey: "user_id"),
-           let _ = UserDefaultsManager.shared.get(forKey: "name"),
+        if let _ = UserDefaultsManager.shared.get(forKey: "name"),
            let _ = UserDefaultsManager.shared.get(forKey: "surname"),
            let _ = UserDefaultsManager.shared.get(forKey: "email") {
             let storyboard = UIStoryboard(name: "TabControllers", bundle: nil)
@@ -29,8 +27,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let navigationVC = UINavigationController.init(rootViewController: mainTabBarController)
             navigationVC.setNavigationBarHidden(true, animated: false)
             self.window?.rootViewController = navigationVC
+            self.window?.makeKeyAndVisible()
         } else {
             UserDefaultsManager.shared.removeAll()
+            KeyChainManager.shared.removeAll()
+            CoreDataManager.shared.removeAll()
         }
         
     }
@@ -79,10 +80,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let window = self.window else {
             return
         }
+        UserDefaultsManager.shared.removeAll()
+        KeyChainManager.shared.removeAll()
+        CoreDataManager.shared.removeAll()
+
+        
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = UINavigationController(rootViewController: storyboard.instantiateViewController(withIdentifier: "WelcomePageViewController"))
         window.rootViewController = vc
+        self.window?.makeKeyAndVisible()
     }
 
 }

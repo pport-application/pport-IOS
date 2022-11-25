@@ -25,35 +25,30 @@ extension String {
     
     private func validatePassword() -> Bool {
         if self.count < 8 {
-            NSLog("validatePassword, password is short.", "")
             return false
         }
         
         let capitalLetterRegEx  = ".*[A-Z]+.*"
         let texttest1 = NSPredicate(format:"SELF MATCHES %@", capitalLetterRegEx)
         if !texttest1.evaluate(with: self) {
-            NSLog("validatePassword, no capital letter.", "")
             return false
         }
         
         let lowerLetterRegEx  = ".*[a-z]+.*"
         let texttest2 = NSPredicate(format:"SELF MATCHES %@", lowerLetterRegEx)
         if !texttest2.evaluate(with: self) {
-            NSLog("No capital letter.", "")
             return false
         }
 
         let numberRegEx  = ".*[0-9]+.*"
         let texttest3 = NSPredicate(format:"SELF MATCHES %@", numberRegEx)
         if !texttest3.evaluate(with: self) {
-            NSLog("No number.", "")
             return false
         }
         
         let specialCharacterRegEx  = ".*[!&^%$#@()/.-]+.*"
         let texttest4 = NSPredicate(format:"SELF MATCHES %@", specialCharacterRegEx)
         if !texttest4.evaluate(with: self) {
-            NSLog("No special charecter.", "")
             return false
         }
         return true
@@ -63,7 +58,6 @@ extension String {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         if !emailPred.evaluate(with: self) {
-            NSLog("Invalid email \(self).", "")
             return false
         }
         return true
@@ -75,5 +69,18 @@ extension String {
     
     func toNumber() -> Int? {
         return Int(self)
+    }
+    
+    func fromTimeInterval() -> String {
+        if let doubleTimestamp = Double(self) {
+            let epochTime = TimeInterval(doubleTimestamp)
+            let date = Date(timeIntervalSince1970: epochTime)
+            let dateFormatter = DateFormatter()
+            dateFormatter.timeStyle = .medium
+            dateFormatter.dateStyle = .medium
+            dateFormatter.timeZone = .current
+            return dateFormatter.string(from: date)
+        }
+        return "---"
     }
 }
