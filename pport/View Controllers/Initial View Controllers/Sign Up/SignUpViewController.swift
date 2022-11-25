@@ -79,14 +79,18 @@ class SignUpViewController: BaseViewController {
         }
         
         // Establish Communication with backend
-        APIManager.shared.signUp(name: name, surname: surname, email: email, password1: password, password2: passwordConfirm, onFailure: { title, body in
-            DispatchQueue.main.async {
-                self.showPopUp(title: title, body: body)
-            }
-        }, onSuccess: {
-            DispatchQueue.main.async {
-                self.showPopUp(title: "Thank you", body: "You have succesfully registered")
-            }
+        NetworkManager.shared.check(isAvailable: {
+            APIManager.shared.signUp(name: name, surname: surname, email: email, password1: password, password2: passwordConfirm, onFailure: { title, body in
+                DispatchQueue.main.async {
+                    self.showPopUp(title: title, body: body)
+                }
+            }, onSuccess: {
+                DispatchQueue.main.async {
+                    self.showPopUp(title: "Thank you", body: "You have succesfully registered")
+                }
+            })
+        }, notAvailable: {
+            self.showPopUp(title: "No Network", body: "Please check your network connection.")
         })
     }
 }

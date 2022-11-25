@@ -36,9 +36,11 @@ class BaseViewController: UIViewController {
         self.hideKeyboard()
         
         let alert = UIAlertController(title: title, message: body, preferredStyle: .alert)
-        let closeAction = UIAlertAction(title: "Close", style: .default) { (_) in }
+        let closeAction = UIAlertAction(title: "Close", style: .default) { (_) in
+            completion()
+        }
         alert.addAction(closeAction)
-        present(alert, animated: true, completion: completion)
+        present(alert, animated: true, completion: nil)
     }
     
     func showWatchlistDeletePopUp(title: String, body: String, remove: @escaping ()->Void) {
@@ -55,11 +57,11 @@ class BaseViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func showAddPortfolioPopUp(currency: @escaping ()->Void, ticker: @escaping ()->Void) {
+    func showTickerCurrencyChoicePopUp(currency: @escaping ()->Void, ticker: @escaping ()->Void) {
         
         self.hideKeyboard()
         
-        let alert = UIAlertController(title: "Add to Portoflio", message: "Please select one of the following to proceed.", preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: "Item Choice", message: "Please select one of the following to proceed.", preferredStyle: .actionSheet)
         let addToWalletAction = UIAlertAction(title: "Currency", style: .default) { _ in
             currency()
         }
@@ -69,6 +71,24 @@ class BaseViewController: UIViewController {
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in }
         alert.addAction(addToWalletAction)
         alert.addAction(addToPortfolioAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func showDepositWithdrawChoicePopUp(deposit: @escaping ()->Void, withdraw: @escaping ()->Void) {
+        
+        self.hideKeyboard()
+        
+        let alert = UIAlertController(title: "Process Choice", message: "Please select one of the following to proceed.", preferredStyle: .actionSheet)
+        let depositAction = UIAlertAction(title: "Deposit", style: .default) { _ in
+            deposit()
+        }
+        let withdrawAction = UIAlertAction(title: "Withdraw", style: .default) { _ in
+            withdraw()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in }
+        alert.addAction(depositAction)
+        alert.addAction(withdrawAction)
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
     }

@@ -26,22 +26,15 @@ class ProfileViewController: BaseViewController {
     
     @IBOutlet weak var settingsANDeditImageView: UIImageView!
     @IBOutlet weak var settingsANDeditBtn: UIButton!
-    
     @IBOutlet weak var profileImageView: UIImageView!
-    
     @IBOutlet weak var infoStackView: UIStackView!
     @IBOutlet weak var settingsStackView: UIStackView!
-    
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var surnameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
-    
     @IBOutlet weak var editProfileBtn: UIButton!
     @IBOutlet weak var changePasswordBtn: UIButton!
-    @IBOutlet weak var upgradeToPremiumBtn: UIButton!
-    
     @IBOutlet weak var saveANDlogoutBtn: UIButton!
-    
     @IBOutlet weak var scrollView: UIScrollView!
     
     var profileVM: ProfileViewModel = ProfileViewModel()
@@ -55,33 +48,36 @@ class ProfileViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        profileImageView.layer.cornerRadius = 45
-        profileImageView.layer.masksToBounds = false
-        profileImageView.layer.shadowColor = UIColor.black.cgColor
-        profileImageView.layer.shadowOffset = CGSize(width: 2, height: 2)
-        profileImageView.layer.shadowOpacity = 0.5
+        self.setUI()
+        self.setProfileInfo()
+    }
+    
+    private func setUI() {
+        self.profileImageView.layer.cornerRadius = 45
+        self.profileImageView.layer.masksToBounds = false
+        self.profileImageView.layer.shadowColor = UIColor.black.cgColor
+        self.profileImageView.layer.shadowOffset = CGSize(width: 2, height: 2)
+        self.profileImageView.layer.shadowOpacity = 0.5
         
-        profileImageView.layer.cornerRadius = 15
-        settingsANDeditImageView.layer.cornerRadius = 15
+        self.profileImageView.layer.cornerRadius = 15
+        self.settingsANDeditImageView.layer.cornerRadius = 15
         
-        settingsANDeditImageView.image = UIImage(systemName: "gearshape")
-        profileImageView.image = UIImage(systemName: "person.circle")
+        self.settingsANDeditImageView.image = UIImage(systemName: "gearshape")
+        self.profileImageView.image = UIImage(systemName: "person.circle")
         
-        settingsANDeditBtn.setTitle("", for: .normal)
-        editProfileBtn.layer.cornerRadius = 8
-        changePasswordBtn.layer.cornerRadius = 8
-        upgradeToPremiumBtn.layer.cornerRadius = 8
+        self.settingsANDeditBtn.setTitle("", for: .normal)
+        self.editProfileBtn.layer.cornerRadius = 8
+        self.changePasswordBtn.layer.cornerRadius = 8
         
-        nameTextField.delegate = self
-        surnameTextField.delegate = self
-        nameTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        surnameTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        self.nameTextField.delegate = self
+        self.surnameTextField.delegate = self
+        self.nameTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        self.surnameTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
-        emailTextField.isEnabled = false
-        scrollView.isScrollEnabled = false
+        self.emailTextField.isEnabled = false
+        self.scrollView.isScrollEnabled = false
         
-        addListeners()
-        setProfileInfo()
+        self.addListeners()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -125,7 +121,8 @@ class ProfileViewController: BaseViewController {
     }
     
     @IBAction func changePasswordBtnTapped(_ sender: Any) {
-        print("changePasswordBtnTapped tapped.")
+        let controller = self.storyboard?.instantiateViewController(identifier: "ChangePasswordViewController") as! ChangePasswordViewController
+        self.navigationController?.pushViewController(controller, animated: true)
     }
     
     @IBAction func saveANDlogoutBtnTapped(_ sender: Any) {
@@ -133,30 +130,48 @@ class ProfileViewController: BaseViewController {
     }
     
     func updateUI() {
-        nameTextField.endEditing(true)
-        surnameTextField.endEditing(true)
-        scrollView.isScrollEnabled = false
+        self.nameTextField.endEditing(true)
+        self.surnameTextField.endEditing(true)
+        self.scrollView.isScrollEnabled = false
         
         switch self.profileVM.mode {
         case .view:
-            self.infoStackView.isHidden = false
-            self.settingsStackView.isHidden = true
-            nameTextField.isEnabled = false
-            surnameTextField.isEnabled = false
-            saveANDlogoutBtn.setTitle("Error", for: .normal)
-            saveANDlogoutBtn.isHidden = true
+            if self.infoStackView.isHidden {
+                self.infoStackView.isHidden = false
+            }
+            if !self.settingsStackView.isHidden {
+                self.settingsStackView.isHidden = true
+            }
+            self.nameTextField.isEnabled = false
+            self.surnameTextField.isEnabled = false
+            self.saveANDlogoutBtn.setTitle("Error", for: .normal)
+            if !self.saveANDlogoutBtn.isHidden {
+                self.saveANDlogoutBtn.isHidden = true
+            }
         case .settings:
-            self.infoStackView.isHidden = true
-            self.settingsStackView.isHidden = false
-            saveANDlogoutBtn.setTitle("LOGOUT", for: .normal)
-            saveANDlogoutBtn.isHidden = false
+            if !self.infoStackView.isHidden {
+                self.infoStackView.isHidden = true
+            }
+            if self.settingsStackView.isHidden {
+                self.settingsStackView.isHidden = false
+            }
+            self.saveANDlogoutBtn.setTitle("LOGOUT", for: .normal)
+            if self.saveANDlogoutBtn.isHidden {
+                self.saveANDlogoutBtn.isHidden = false
+            }
         case .edit:
-            self.infoStackView.isHidden = false
-            self.settingsStackView.isHidden = true
-            nameTextField.isEnabled = true
-            surnameTextField.isEnabled = true
-            saveANDlogoutBtn.setTitle("SAVE", for: .normal)
-            saveANDlogoutBtn.isHidden = false
+            if self.infoStackView.isHidden {
+                self.infoStackView.isHidden = false
+            }
+            if !self.settingsStackView.isHidden {
+                self.settingsStackView.isHidden = true
+            }
+            self.nameTextField.isEnabled = true
+            self.surnameTextField.isEnabled = true
+            self.saveANDlogoutBtn.setTitle("SAVE", for: .normal)
+            if self.saveANDlogoutBtn.isHidden {
+                self.saveANDlogoutBtn.isHidden = false
+            }
         }
     }
     
@@ -168,21 +183,21 @@ class ProfileViewController: BaseViewController {
 extension ProfileViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        scrollView.isScrollEnabled = true
-        scrollView.setContentOffset(CGPoint(x: 0, y: (textField.superview?.frame.origin.y)!), animated: true)
+        self.scrollView.isScrollEnabled = true
+        self.scrollView.setContentOffset(CGPoint(x: 0, y: (textField.superview?.frame.origin.y)!), animated: true)
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-        scrollView.isScrollEnabled = false
+        self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+        self.scrollView.isScrollEnabled = false
     }
 }
 
 extension ProfileViewController {
     
     @objc func textFieldDidChange(_ textField: UITextField) {
-        if scrollView.contentOffset.y != (textField.superview?.frame.origin.y)! {
-            scrollView.setContentOffset(CGPoint(x: 0, y: (textField.superview?.frame.origin.y)!), animated: true)
+        if self.scrollView.contentOffset.y != (textField.superview?.frame.origin.y)! {
+            self.scrollView.setContentOffset(CGPoint(x: 0, y: (textField.superview?.frame.origin.y)!), animated: true)
         }
     }
 }

@@ -1,20 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21512" systemVersion="21G217" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CurrencyItemEntity" representedClassName="CurrencyItemEntity" syncable="YES">
+        <attribute name="code" optional="YES" attributeType="String"/>
+        <attribute name="country" optional="YES" attributeType="String"/>
+        <attribute name="currency" optional="YES" attributeType="String"/>
+        <attribute name="exchange" optional="YES" attributeType="String"/>
+        <attribute name="isin" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="ExchangeItemEntity" representedClassName="ExchangeItemEntity" syncable="YES">
+        <attribute name="code" optional="YES" attributeType="String"/>
+        <attribute name="country" optional="YES" attributeType="String"/>
+        <attribute name="countryISO2" optional="YES" attributeType="String"/>
+        <attribute name="countryISO3" optional="YES" attributeType="String"/>
+        <attribute name="currency" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="operatingMIC" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="HistoryItemEntity" representedClassName="HistoryItemEntity" syncable="YES">
         <attribute name="amount" optional="YES" attributeType="String"/>
         <attribute name="balance" optional="YES" attributeType="String"/>
+        <attribute name="charge" optional="YES" attributeType="String"/>
         <attribute name="count" optional="YES" attributeType="String"/>
         <attribute name="currency" optional="YES" attributeType="String"/>
         <attribute name="from" optional="YES" attributeType="String"/>
-        <attribute name="net_worth" optional="YES" attributeType="String"/>
-        <attribute name="revenue" optional="YES" attributeType="String"/>
         <attribute name="ticker" optional="YES" attributeType="String"/>
         <attribute name="timestamp" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="String"/>
     </entity>
     <entity name="PortfolioItemEntity" representedClassName="PortfolioItemEntity" syncable="YES">
         <attribute name="portfolio" optional="YES" attributeType="Binary"/>
-        <attribute name="wallet" optional="YES" attributeType="Binary"/>
+    </entity>
+    <entity name="TickerItemEntity" representedClassName="TickerItemEntity" syncable="YES">
+        <attribute name="code" attributeType="String"/>
+        <attribute name="tickers" optional="YES" attributeType="Transformable"/>
     </entity>
     <entity name="WatchlistItemEntity" representedClassName="WatchlistItemEntity" isAbstract="YES" syncable="YES">
         <attribute name="change" optional="YES" attributeType="String"/>

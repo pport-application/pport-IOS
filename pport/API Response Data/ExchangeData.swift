@@ -11,8 +11,8 @@ struct ExchangeData: Codable {
     var Name: String
     var Code: String
     var OperatingMIC: String?
-    var Country: String
-    var Currency: String
+    var Country: String?
+    var Currency: String?
     var CountryISO2: String?
     var CountryISO3: String?
 }

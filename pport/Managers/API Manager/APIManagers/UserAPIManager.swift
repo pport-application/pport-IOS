@@ -112,7 +112,7 @@ extension APIManager {
             return
         }
         
-        APIManagerBase.shared.post(parameters: jsonData, endpoint: "/user/update_password", auth: token, onFailure: { response_code, body in
+        APIManagerBase.shared.post(parameters: jsonData, endpoint: "/user/change_password", auth: token, onFailure: { response_code, body in
             NSLog("APIManager.updatePassword response_code: \(response_code) body: \(body)", "")
             onFailure("Error", body)
         }, onSuccess: { data in

@@ -19,12 +19,20 @@ enum WatchlistCollectionViewDataType {
     case watchlist
 }
 
+enum WatchlistCollectionViewDisplay {
+    case change
+    case change_p
+    case price
+}
+
 class WatchlistViewController: BaseViewController {
     
     @IBOutlet weak var watchlistCollectionView: UICollectionView!
     @IBOutlet weak var searchBarStackView: UIStackView!
     @IBOutlet weak var searchBarTextField: UITextField!
     @IBOutlet weak var searchBtn: UIButton!
+    @IBOutlet weak var reloadBtn: UIButton!
+    @IBOutlet weak var collectionViewModeBtn: UIButton!
     @IBOutlet weak var filterBtn: UIButton!
     @IBOutlet weak var exchangePickerUIView: UIView!
     @IBOutlet weak var exchangePickerView: UIPickerView!
@@ -40,39 +48,35 @@ class WatchlistViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUI()
+        self.setUI()
     }
     
     private func setUI() {
         // Register Cells
         let nibWCVC = UINib(nibName: "WatchlistCollectionViewCell", bundle: .main)
-        watchlistCollectionView.register(nibWCVC, forCellWithReuseIdentifier: "WatchlistCollectionViewCell")
+        self.watchlistCollectionView.register(nibWCVC, forCellWithReuseIdentifier: "WatchlistCollectionViewCell")
         let nibSCVC = UINib(nibName: "SearchCollectionViewCell", bundle: .main)
-        watchlistCollectionView.register(nibSCVC, forCellWithReuseIdentifier: "SearchCollectionViewCell")
+        self.watchlistCollectionView.register(nibSCVC, forCellWithReuseIdentifier: "SearchCollectionViewCell")
         
         // Initialize CollectionView Delegates
-        watchlistCollectionView.delegate = self
-        watchlistCollectionView.dataSource = self
-        watchlistCollectionView.reloadData()
+        self.watchlistCollectionView.delegate = self
+        self.watchlistCollectionView.dataSource = self
+        self.watchlistCollectionView.reloadData()
         
         // Init UI
-        searchBarTextField.borderStyle = .none
-        searchBarTextField.layer.cornerRadius = 8
-        searchBarTextField.layer.borderWidth = 1
-        searchBarTextField.layer.borderColor = UIColor.gray.cgColor
-        searchBarTextField.layer.masksToBounds = true
-        searchBarStackView.isHidden = true
-        searchBarTextField.setLeftPaddingPoints(10)
-        searchBarTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        searchBtn.setTitle("", for: .normal)
-        filterBtn.setTitle("", for: .normal)
+        self.searchBarTextField.borderStyle = .none
+        self.searchBarTextField.layer.cornerRadius = 8
+        self.searchBarTextField.layer.borderWidth = 1
+        self.searchBarTextField.layer.borderColor = UIColor.gray.cgColor
+        self.searchBarTextField.layer.masksToBounds = true
+        self.searchBarStackView.isHidden = true
+        self.searchBarTextField.setLeftPaddingPoints(10)
+        self.searchBarTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        self.searchBtn.setTitle("", for: .normal)
+        self.filterBtn.setTitle("", for: .normal)
         
-        addListeners()
-        self.watchlistVM.initExchangeCodes()
-        self.watchlistVM.initWatchlistData()
-        
-        watchlistCollectionView.delegate = self
-        setupLongGestureRecognizerOnCollection()
+        self.watchlistCollectionView.delegate = self
+        self.setupLongGestureRecognizerOnCollection()
         
         // Init picker view
         self.exchangePickerView.delegate = self
@@ -90,8 +94,20 @@ class WatchlistViewController: BaseViewController {
         self.exchangePickerUIView.layer.shadowOpacity = 0.5
         self.exchangePickerUIView.layer.shadowOffset = .zero
         self.exchangePickerUIView.layer.shadowPath = UIBezierPath(rect: self.exchangePickerUIView.bounds).cgPath
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(hide))
+        self.view.addGestureRecognizer(tap)
+        
+        self.collectionViewModeBtn.setImage(UIImage(systemName: "percent"), for: .normal)
+        self.collectionViewModeBtn.tintColor = .black
+        
+        self.addListeners()
     }
 
+    @objc func hide() {
+        self.hideKeyboard()
+        self.exchangePickerUIView.isHidden = true
+    }
     
     private func addListeners() {
         self.watchlistVM.showPopUp
@@ -121,34 +137,69 @@ class WatchlistViewController: BaseViewController {
                     return
                 }
                 self.watchlistCollectionView.deleteItems(at: [indexPath])
+                self.watchlistCollectionView.reloadData()
             }.store(in: &cancellables)
         self.watchlistVM.reloadPicker
             .receive(on: DispatchQueue.main)
             .sink{
                 self.exchangePickerView.reloadAllComponents()
             }.store(in: &cancellables)
+        self.watchlistVM.changeWatchlistDisplay
+            .receive(on: DispatchQueue.main)
+            .sink{
+                self.changeWatchlistDisplay()
+                self.watchlistCollectionView.reloadData()
+            }.store(in: &cancellables)
+        self.watchlistVM.setPickerViewIndex
+            .receive(on: DispatchQueue.main)
+            .sink{ index in
+                self.exchangePickerView.selectRow(index, inComponent: 0, animated: false)
+            }.store(in: &cancellables)
     }
     
     @IBAction func searchBarBtnTapped(_ sender: Any) {
-        changeUI()
+        self.changeUI()
     }
     
     @IBAction func cancelToolBarBtnTapped(_ sender: Any) {
+        self.hideKeyboard()
         self.exchangePickerUIView.isHidden = true
     }
     
 
     @IBAction func doneToolBarBtnTapped(_ sender: Any) {
+        self.hideKeyboard()
         self.exchangePickerUIView.isHidden = true
         let row = self.exchangePickerView.selectedRow(inComponent: 0)
-        guard let exchange = self.watchlistVM.exchanges?[row].Code else {
+        guard let exchange = self.watchlistVM.exchanges?[row] else {
             return
         }
         self.watchlistVM.initSearchData(with: exchange)
     }
     
-    func changeUI() {
-        searchBarStackView.isHidden = !searchBarStackView.isHidden
+    @IBAction func filterSearchBtnTapped(_ sender: Any) {
+        self.hideKeyboard()
+        self.exchangePickerUIView.isHidden = false
+    }
+    
+    @IBAction func collectionViewModeBtnTapped(_ sender: Any) {
+        switch self.watchlistVM.collectionViewDisplay {
+        case .change:
+            self.watchlistVM.setCollectionViewMode(with: .price)
+        case .change_p:
+            self.watchlistVM.setCollectionViewMode(with: .change)
+        case .price:
+            self.watchlistVM.setCollectionViewMode(with: .change_p)
+        }
+    }
+    
+    @IBAction func reloadBtnTapped(_ sender: Any) {
+        self.watchlistVM.initWatchlistData(displayPopUp: true)
+    }
+    
+    private func changeUI() {
+        self.hideKeyboard()
+        self.searchBarStackView.isHidden = !self.searchBarStackView.isHidden
         if !searchBarStackView.isHidden {
             self.watchlistVM.setCollectionViewDataType(with: .search)
             self.watchlistCollectionView.reloadData()
@@ -158,8 +209,16 @@ class WatchlistViewController: BaseViewController {
         }
     }
     
-    @IBAction func filterSearchBtnTapped(_ sender: Any) {
-        self.exchangePickerUIView.isHidden = false
+    private func changeWatchlistDisplay() {
+        switch self.watchlistVM.collectionViewDisplay {
+        case .change:
+            self.collectionViewModeBtn.setImage(UIImage(systemName: "plus.forwardslash.minus"), for: .normal)
+        case .change_p:
+            self.collectionViewModeBtn.setImage(UIImage(systemName: "percent"), for: .normal)
+        case .price:
+            self.collectionViewModeBtn.setImage(UIImage(systemName: "dollarsign"), for: .normal)
+        }
+        self.collectionViewModeBtn.tintColor = .black
     }
     
     private func setupLongGestureRecognizerOnCollection() {
@@ -167,11 +226,14 @@ class WatchlistViewController: BaseViewController {
         longPressedGesture.minimumPressDuration = 0.5
         longPressedGesture.delegate = self
         longPressedGesture.delaysTouchesBegan = true
-        watchlistCollectionView?.addGestureRecognizer(longPressedGesture)
+        self.watchlistCollectionView?.addGestureRecognizer(longPressedGesture)
     }
 
     @objc func handleLongPress(gestureRecognizer: UILongPressGestureRecognizer) {
-        
+        self.hideKeyboard()
+        if self.watchlistVM.collectionViewDataType == .search {
+            return
+        }
         if (gestureRecognizer.state != .began) {
             return
         }
@@ -208,11 +270,12 @@ extension WatchlistViewController: UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        guard let exchange = self.watchlistVM.exchanges?[row] else {
-            NSLog("fail loading from exchanges", "")
+        guard let exchange = self.watchlistVM.exchanges?[row], let code = exchange.code, let country = exchange.country else {
+            NSLog("fail loading from exchanges in row: \(row)", "")
             return ""
         }
-        return exchange.Code + ", " + exchange.Country
+        
+        return code + ", " + country
     }
 }
 
@@ -256,7 +319,7 @@ extension WatchlistViewController: UICollectionViewDataSource {
         case .watchlist:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WatchlistCollectionViewCell", for: indexPath) as! WatchlistCollectionViewCell
             if let watchlistItem = self.watchlistVM.watchlist?[indexPath.row] {
-                cell.setItem(with: watchlistItem)
+                cell.setItem(with: watchlistItem, with: self.watchlistVM.collectionViewDisplay)
             }
             cell.contentView.layer.cornerRadius = 8
             cell.contentView.layer.borderWidth = 1

@@ -21,7 +21,6 @@ enum PortfolioCollectionViewDataType {
 
 class PortfolioViewController: BaseViewController {
     
-    
     @IBOutlet weak var portfolioCollectionView: UICollectionView!
     @IBOutlet weak var addToWalletBtn: UIButton!
     @IBOutlet weak var portfolioHistoryBtn: UIButton!
@@ -34,29 +33,32 @@ class PortfolioViewController: BaseViewController {
         self.cancellables.forEach { $0.cancel() }
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUI()
+        self.setUI()
     }
     
     private func setUI() {
-        let nibPCVC = UINib(nibName: "PortfolioCollectionViewCell", bundle: .main)
-        portfolioCollectionView.register(nibPCVC, forCellWithReuseIdentifier: "PortfolioCollectionViewCell")
+        
+        let nibPCVC = UINib(nibName: "PortfolioWalletCollectionViewCell", bundle: .main)
+        self.portfolioCollectionView.register(nibPCVC, forCellWithReuseIdentifier: "PortfolioWalletCollectionViewCell")
+        let nibPTVC = UINib(nibName: "PortfolioTickerCollectionViewCell", bundle: .main)
+        self.portfolioCollectionView.register(nibPTVC, forCellWithReuseIdentifier: "PortfolioTickerCollectionViewCell")
         let nibHPCVC = UINib(nibName: "HistoryPortfolioCollectionViewCell", bundle: .main)
-        portfolioCollectionView.register(nibHPCVC, forCellWithReuseIdentifier: "HistoryPortfolioCollectionViewCell")
+        self.portfolioCollectionView.register(nibHPCVC, forCellWithReuseIdentifier: "HistoryPortfolioCollectionViewCell")
         let nibHWCVC = UINib(nibName: "HistoryWalletCollectionViewCell", bundle: .main)
-        portfolioCollectionView.register(nibHWCVC, forCellWithReuseIdentifier: "HistoryWalletCollectionViewCell")
-        portfolioCollectionView.delegate = self
-        portfolioCollectionView.dataSource = self
-        portfolioCollectionView.reloadData()
+        self.portfolioCollectionView.register(nibHWCVC, forCellWithReuseIdentifier: "HistoryWalletCollectionViewCell")
+        let nibPCVCIH = UINib(nibName: "PortfolioCollectionViewCellInteractiveHeader", bundle: .main)
+        self.portfolioCollectionView.register(nibPCVCIH, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "PortfolioCollectionViewCellInteractiveHeader")
+        self.portfolioCollectionView.delegate = self
+        self.portfolioCollectionView.dataSource = self
+        self.portfolioCollectionView.reloadData()
         
-        addToWalletBtn.setTitle("", for: .normal)
-        portfolioHistoryBtn.setTitle("", for: .normal)
+        self.addToWalletBtn.setTitle("", for: .normal)
+        self.portfolioHistoryBtn.setTitle("", for: .normal)
         
-        addListeners()
-        self.portfolioVM.initData()
+        self.addListeners()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -71,23 +73,39 @@ class PortfolioViewController: BaseViewController {
                 self.portfolioCollectionView.reloadData()
             }.store(in: &cancellables)
     }
-        
     
     @IBAction func addToWalletBtnTapped(_ sender: Any) {
-//        let controller = self.storyboard?.instantiateViewController(identifier: "AddPortfolioPopUpViewController") as! AddPortfolioPopUpViewController
-//        controller.modalPresentationStyle = .overCurrentContext
-//        controller.delegate = self
-//        present(controller, animated: true, completion: nil)
-        showAddPortfolioPopUp(currency: {
-            NSLog("Currency is tapped", "")
+        self.showTickerCurrencyChoicePopUp(currency: {
+            self.showDepositWithdrawChoicePopUp(deposit: {
+                let controller = self.storyboard?.instantiateViewController(identifier: "PortfolioCurrencyViewController") as! PortfolioCurrencyViewController
+                controller.delegate = self
+                controller.setType(with: .deposit)
+                controller.setCurrencies(with: self.portfolioVM.currencies?.reduce(into: [String]()) { $0.append( $1.code ?? "--" )})
+                self.navigationController?.pushViewController(controller, animated: true)
+            }, withdraw: {
+                let controller = self.storyboard?.instantiateViewController(identifier: "PortfolioCurrencyViewController") as! PortfolioCurrencyViewController
+                controller.delegate = self
+                controller.setType(with: .withdraw)
+                controller.setCurrencies(with: Array(self.portfolioVM.portfolio?.wallet.keys ?? [:].keys) )
+                self.navigationController?.pushViewController(controller, animated: true)
+            })
         }, ticker: {
-            NSLog("Ticker is tapped", "")
+            self.showDepositWithdrawChoicePopUp(deposit: {
+                let controller = self.storyboard?.instantiateViewController(identifier: "PortfolioTickerViewController") as! PortfolioTickerViewController
+                controller.delegate = self
+                controller.setType(with: .deposit)
+                self.navigationController?.pushViewController(controller, animated: true)
+            }, withdraw: {
+                let controller = self.storyboard?.instantiateViewController(identifier: "PortfolioTickerViewController") as! PortfolioTickerViewController
+                controller.delegate = self
+                controller.setType(with: .withdraw)
+                controller.setTickers(with: self.portfolioVM.portfolio?.portfolio ?? [])
+                self.navigationController?.pushViewController(controller, animated: true)
+            })
         })
     }
     
-    
     @IBAction func portfolioHistoryBtnTapped(_ sender: Any) {
-        // TODO:
         if self.portfolioVM.collectionViewDataType == .portfolio {
             self.portfolioVM.setCollectionViewDataType(with: .history)
             self.portfolioCollectionView.reloadData()
@@ -110,20 +128,45 @@ extension PortfolioViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch self.portfolioVM.collectionViewDataType {
         case .portfolio:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PortfolioCollectionViewCell", for: indexPath) as! PortfolioCollectionViewCell
-            // update cell
-            cell.contentView.layer.cornerRadius = 8
-            cell.contentView.layer.borderWidth = 1
-            cell.contentView.layer.borderColor = UIColor.clear.cgColor
-            cell.contentView.layer.masksToBounds = true
+            if indexPath.section == 0 {
+                if let wallet = self.portfolioVM.portfolio?.wallet  {
+                    let currency = Array(wallet)[indexPath.row].0
+                    let amount = Array(wallet)[indexPath.row].1
+                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PortfolioWalletCollectionViewCell", for: indexPath) as! PortfolioWalletCollectionViewCell
+                    // update cell
+                    cell.setTitle(with: currency, amount: amount)
+                    cell.contentView.layer.cornerRadius = 8
+                    cell.contentView.layer.borderWidth = 1
+                    cell.contentView.layer.borderColor = UIColor.clear.cgColor
+                    cell.contentView.layer.masksToBounds = true
 
-            cell.layer.shadowColor = UIColor.systemGray3.cgColor
-            cell.layer.shadowOffset = CGSize(width: 0, height: 4.0)
-            cell.layer.shadowRadius = 4
-            cell.layer.shadowOpacity = 0.5
-            cell.layer.masksToBounds = false
-            cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
-            return cell
+                    cell.layer.shadowColor = UIColor.systemGray3.cgColor
+                    cell.layer.shadowOffset = CGSize(width: 0, height: 4.0)
+                    cell.layer.shadowRadius = 4
+                    cell.layer.shadowOpacity = 0.5
+                    cell.layer.masksToBounds = false
+                    cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
+                    return cell
+                }
+            } else {
+                if let portfolio = self.portfolioVM.portfolio?.portfolio  {
+                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PortfolioTickerCollectionViewCell", for: indexPath) as! PortfolioTickerCollectionViewCell
+                    // update cell
+                    cell.setTitle(with: portfolio[indexPath.row])
+                    cell.contentView.layer.cornerRadius = 8
+                    cell.contentView.layer.borderWidth = 1
+                    cell.contentView.layer.borderColor = UIColor.clear.cgColor
+                    cell.contentView.layer.masksToBounds = true
+                    
+                    cell.layer.shadowColor = UIColor.systemGray3.cgColor
+                    cell.layer.shadowOffset = CGSize(width: 0, height: 4.0)
+                    cell.layer.shadowRadius = 4
+                    cell.layer.shadowOpacity = 0.5
+                    cell.layer.masksToBounds = false
+                    cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
+                    return cell
+                }
+            }
         case .history:
             if let historyItem = self.portfolioVM.history?[indexPath.row], let from = historyItem.from {
                 if from == "wallet" {
@@ -170,22 +213,34 @@ extension PortfolioViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch self.portfolioVM.collectionViewDataType {
         case .portfolio:
-            return 0
+            if section == 0 {
+                return self.portfolioVM.portfolio?.wallet.count ?? 0
+            } else {
+                return self.portfolioVM.portfolio?.portfolio.count ?? 0
+            }
         case .history:
             return self.portfolioVM.history?.count ?? 0
         }
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        switch self.portfolioVM.collectionViewDataType {
+        case .portfolio:
+            return 2
+        case .history:
+            return 1
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         switch self.portfolioVM.collectionViewDataType {
         case .portfolio:
-            // TODO: Set for portolfio cell
-            return CGSize(width: self.portfolioCollectionView.frame.width-16, height: 160)
+            if indexPath.section == 0 {
+                return CGSize(width: self.portfolioCollectionView.frame.width-16, height: 40)
+            } else {
+                return CGSize(width: self.portfolioCollectionView.frame.width-16, height: 80)
+            }
         case .history:
             // TODO: Change height for wallet and portfolio
             if let historyItem = self.portfolioVM.history?[indexPath.row], let from = historyItem.from {
@@ -209,5 +264,35 @@ extension PortfolioViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) {
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: self.portfolioCollectionView.frame.width-16, height: 40)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "PortfolioCollectionViewCellInteractiveHeader", for: indexPath) as! PortfolioCollectionViewCellInteractiveHeader
+        if self.portfolioVM.collectionViewDataType == .portfolio {
+            if indexPath.section == 0 {
+                sectionHeader.setTitle(with: "Wallet")
+            } else {
+                sectionHeader.setTitle(with: "Portfolio")
+            }
+        } else {
+            sectionHeader.setTitle(with: "History")
+        }
+        return sectionHeader
+        
+    }
+}
+
+extension PortfolioViewController: PortfolioDepositWithdrawViewControllerDelegate {
+    func updateData() {
+        self.portfolioVM.initHistoryData()
+        self.portfolioVM.initPortfolioData()
     }
 }

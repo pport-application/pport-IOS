@@ -11,7 +11,7 @@ import SwiftyJSON
 extension APIManager {
     
     // MARK: Deposit Currency
-    func depositCurrency(token: String, session: String, currency: String, amount: Int, timestamp: TimeInterval, onFailure: @escaping (String, String)->Void, onSuccess: @escaping ()->Void) {
+    func depositCurrency(token: String, session: String, currency: String, amount: Float, timestamp: TimeInterval, onFailure: @escaping (String, String)->Void, onSuccess: @escaping ()->Void) {
         let parameters: [String: Any] = [
             "session": session,
             "currency": currency,
@@ -38,7 +38,7 @@ extension APIManager {
     }
     
     // MARK: Withdraw Currency
-    func withdrawCurrency(token: String, session: String, currency: String, amount: Int, timestamp: TimeInterval, onFailure: @escaping (String, String)->Void, onSuccess: @escaping ()->Void) {
+    func withdrawCurrency(token: String, session: String, currency: String, amount: Float, timestamp: TimeInterval, onFailure: @escaping (String, String)->Void, onSuccess: @escaping ()->Void) {
         let parameters: [String: Any] = [
             "session": session,
             "currency": currency,
@@ -95,11 +95,12 @@ extension APIManager {
     }
     
     // MARK: Deposit Ticker
-    func depositTicker(token: String, session: String, count: Int, purchase_cost: Double, currency: String, timestamp: TimeInterval, onFailure: @escaping (String, String)->Void, onSuccess: @escaping ()->Void) {
+    func depositTicker(token: String, session: String, ticker: String, count: Float, charge: Float, currency: String, timestamp: TimeInterval, onFailure: @escaping (String, String)->Void, onSuccess: @escaping ()->Void) {
         let parameters: [String: Any] = [
             "session": session,
+            "ticker": ticker,
             "count": count,
-            "purchase_cost": purchase_cost,
+            "charge": charge,
             "currency": currency,
             "timestamp": timestamp
         ]
@@ -123,11 +124,12 @@ extension APIManager {
     }
     
     // MARK: Withdraw Ticker
-    func withdrawTicker(token: String, session: String, count: Int, purchase_cost: Double, currency: String, timestamp: TimeInterval, onFailure: @escaping (String, String)->Void, onSuccess: @escaping ()->Void) {
+    func withdrawTicker(token: String, session: String, ticker: String, count: Float, charge: Float, currency: String, timestamp: TimeInterval, onFailure: @escaping (String, String)->Void, onSuccess: @escaping ()->Void) {
         let parameters: [String: Any] = [
             "session": session,
+            "ticker": ticker,
             "count": count,
-            "purchase_cost": purchase_cost,
+            "charge": charge,
             "currency": currency,
             "timestamp": timestamp
         ]

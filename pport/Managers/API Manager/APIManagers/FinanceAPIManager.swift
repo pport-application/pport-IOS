@@ -38,7 +38,39 @@ extension APIManager {
                 onSuccess(decodedData)
                 return
             }
-            NSLog("APIManager.getToken: unable to decode [TickerData]", "")
+            NSLog("APIManager.getTickers: unable to decode [TickerData]", "")
+            onFailure("Ups!", "Something went wrong. Please try again later.")
+        })
+    }
+    
+    // MARK: Validate Ticker
+    func validateTicker(token: String, session: String, ticker: String, exchange: String, onFailure: @escaping (String, String)->Void, onSuccess: @escaping (Int)->Void) {
+        let parameters: [String: Any] = [
+            "session": session,
+            "ticker": ticker,
+            "exchange": exchange
+        ]
+
+        var jsonData: Data? = nil
+        
+        do {
+            jsonData = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+        } catch _ {
+            NSLog("APIManager.validateTicker parameters decode error", "")
+            onFailure("Ups!", "Something went wrong. Please try again later.")
+            return
+        }
+        
+        APIManagerBase.shared.post(parameters: jsonData, endpoint: "/finance/validate_ticker", auth: token, onFailure: { response_code, body in
+            NSLog("APIManager.validateTicker response_code: \(response_code) body: \(body)", "")
+            onFailure("Error", body)
+        }, onSuccess: { data in
+            let decoder = JSONDecoder()
+            if let decodedData = try? decoder.decode(Int.self, from: data) {
+                onSuccess(decodedData)
+                return
+            }
+            NSLog("APIManager.validateTicker: unable to decode Int", "")
             onFailure("Ups!", "Something went wrong. Please try again later.")
         })
     }
@@ -68,7 +100,7 @@ extension APIManager {
                 onSuccess(decodedData)
                 return
             }
-            NSLog("APIManager.getToken: unable to decode [ExchangeData]", "")
+            NSLog("APIManager.getExchangeCodes: unable to decode [ExchangeData]", "")
             onFailure("Ups!", "Something went wrong. Please try again later.")
         })
     }
@@ -98,7 +130,7 @@ extension APIManager {
                 onSuccess(decodedData)
                 return
             }
-            NSLog("APIManager.getToken: unable to decode [CurrencyCodeData]", "")
+            NSLog("APIManager.getCurrencyCodes: unable to decode [CurrencyCodeData]", "")
             onFailure("Ups!", "Something went wrong. Please try again later.")
         })
     }

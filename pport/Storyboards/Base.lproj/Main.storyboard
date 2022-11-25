@@ -35,6 +35,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="pport" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rKa-7L-uD8">
+                                <rect key="frame" x="24" y="252" width="366" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="iQa-h1-Mvf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="50"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="kS3-vz-7bp">
                                 <rect key="frame" x="24" y="710" width="366" height="128"/>
                                 <subviews>
@@ -81,7 +90,10 @@
                         <constraints>
                             <constraint firstItem="wOS-j6-Zpj" firstAttribute="bottom" secondItem="kS3-vz-7bp" secondAttribute="bottom" constant="24" id="5Po-J7-jO4"/>
                             <constraint firstItem="wOS-j6-Zpj" firstAttribute="trailing" secondItem="kS3-vz-7bp" secondAttribute="trailing" constant="24" id="MFP-2t-lYm"/>
+                            <constraint firstItem="wOS-j6-Zpj" firstAttribute="trailing" secondItem="rKa-7L-uD8" secondAttribute="trailing" constant="24" id="MUL-Hc-eam"/>
                             <constraint firstItem="kS3-vz-7bp" firstAttribute="leading" secondItem="wOS-j6-Zpj" secondAttribute="leading" constant="24" id="NF7-FL-ipe"/>
+                            <constraint firstItem="rKa-7L-uD8" firstAttribute="leading" secondItem="wOS-j6-Zpj" secondAttribute="leading" constant="24" id="ZFX-yP-HcA"/>
+                            <constraint firstItem="rKa-7L-uD8" firstAttribute="top" secondItem="wOS-j6-Zpj" secondAttribute="top" constant="160" id="hLw-iK-s6K"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Bxg-dt-djQ"/>
@@ -362,7 +374,7 @@
                                                                     <constraint firstAttribute="height" constant="48" id="8Pf-kc-PK4"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits"/>
+                                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                                             </textField>
                                                         </subviews>
                                                     </stackView>
@@ -381,7 +393,7 @@
                                                                     <constraint firstAttribute="height" constant="48" id="ixr-tl-h5v"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                                                             </textField>
                                                         </subviews>
                                                     </stackView>

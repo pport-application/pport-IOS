@@ -16,8 +16,6 @@ class WatchlistCollectionViewCell: UICollectionViewCell {
     
     var watchlistItemEntity: WatchlistItemEntity!
     
-    let containerView = UIView()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -46,32 +44,50 @@ class WatchlistCollectionViewCell: UICollectionViewCell {
         self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.contentView.layer.cornerRadius).cgPath
     }
     
-    func setItem(with item: WatchlistItemEntity) {
+    func setItem(with item: WatchlistItemEntity, with display: WatchlistCollectionViewDisplay?) {
         self.watchlistItemEntity = item
-        setLabels()
+        setLabels(with: display)
     }
     
-    private func setLabels() {
+    private func setLabels(with display: WatchlistCollectionViewDisplay?) {
         guard let item = self.watchlistItemEntity else {
             return
         }
         self.symbolLabel.text = item.code
         if let timestamp = item.timestamp {
-            if let doubleTimestamp = Double(timestamp) {
-                let epochTime = TimeInterval(doubleTimestamp)
-                let date = Date(timeIntervalSince1970: epochTime)
-                let dateFormatter = DateFormatter()
-                dateFormatter.timeStyle = .medium
-                dateFormatter.dateStyle = .medium
-                dateFormatter.timeZone = .current
-                let localDate = dateFormatter.string(from: date)
-                self.dateLabel.text = "\(localDate)"
-            } else {
-                self.dateLabel.text = timestamp
+            self.dateLabel.text = timestamp.fromTimeInterval()
+        }
+        
+        guard let mode = display else {
+            guard let change_p = item.change_p else {
+                self.latestValueLabel.text = "% --.--"
+                return
             }
+            self.latestValueLabel.text = "% " + change_p
+            return
         }
-        if let change_p = item.change_p {
-            self.latestValueLabel.text = change_p
+        
+        switch mode {
+        case .change:
+            guard let change = item.change else {
+                return
+            }
+            let c = Float(change) ?? 0
+            self.latestValueLabel.text = String(round(c * 100) / 100.0)
+        case .change_p:
+            guard let change_p = item.change_p else {
+                return
+            }
+            let c = Float(change_p) ?? 0
+            self.latestValueLabel.text = "% " + String(round(c * 100) / 100.0)
+        case .price:
+            guard let change = item.change, let close = item.previousClose else {
+                return
+            }
+            let price = round(((Float(change) ?? 0) + (Float(close) ?? 0)) * 100) / 100.0
+            self.latestValueLabel.text = String(price)
         }
+        
     }
 }
+

@@ -1,19 +1,19 @@
 //
-//  PortfolioCollectionViewCell.swift
+//  PortfolioTickerCollectionViewCell.swift
 //  pport
 //
-//  Created by Akmuhammet Ashyralyyev on 6.02.2022.
+//  Created by Akmuhammet Ashyralyyev on 21.11.2022.
 //
 
 import Foundation
 import UIKit
 
-class PortfolioCollectionViewCell: UICollectionViewCell {
+class PortfolioTickerCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var changeLabel: UILabel!
-    
-    let containerView = UIView()
+    @IBOutlet weak var tickerLabel: UILabel!
+    @IBOutlet weak var currencyLabel: UILabel!
+    @IBOutlet weak var countLabel: UILabel!
+    @IBOutlet weak var balanceLabel: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -41,5 +41,12 @@ class PortfolioCollectionViewCell: UICollectionViewCell {
         self.layer.shadowOpacity = 0.5
         self.layer.masksToBounds = false
         self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.contentView.layer.cornerRadius).cgPath
+    }
+    
+    func setTitle(with ticker: Portfolio) {
+        self.tickerLabel.text = ticker.ticker
+        self.currencyLabel.text = ticker.currency
+        self.countLabel.text = String(ticker.count)
+        self.balanceLabel.text = String(ticker.balance)
     }
 }

@@ -20,7 +20,7 @@ struct PortfolioHistoryData: Decodable {
     var from: String
     var ticker: String
     var count: Float
-    var revenue: Float
+    var charge: Float
     var currency: String
     var type: Int
     var balance: Float

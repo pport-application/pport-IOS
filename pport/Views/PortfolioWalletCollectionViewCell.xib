@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -10,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="PortfolioCollectionViewCell" reuseIdentifier="" id="xq6-7P-wnw" customClass="PortfolioCollectionViewCell" customModule="pport" customModuleProvider="target">
+        <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="PortfolioWalletCollectionViewCell" reuseIdentifier="PortfolioWalletCollectionViewCell" id="xq6-7P-wnw" customClass="PortfolioWalletCollectionViewCell" customModule="pport" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="414" height="128"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="gDI-ko-csI">
@@ -23,26 +24,22 @@
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="rBw-T8-Snf">
                                 <rect key="frame" x="8" y="8" width="398" height="112"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c7x-vb-iVd">
-                                        <rect key="frame" x="0.0" y="0.0" width="61.5" height="112"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1" verticalHuggingPriority="1" text="---" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c7x-vb-iVd">
+                                        <rect key="frame" x="0.0" y="0.0" width="159" height="112"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fv6-AM-xwx">
-                                        <rect key="frame" x="69.5" y="0.0" width="208.5" height="112"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="% --.--" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Vo-kp-i6i">
-                                        <rect key="frame" x="286" y="0.0" width="112" height="112"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="5Vo-kp-i6i" secondAttribute="height" multiplier="1:1" id="viU-rX-Vej"/>
-                                        </constraints>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1" verticalHuggingPriority="1" text="---" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Vo-kp-i6i">
+                                        <rect key="frame" x="167" y="0.0" width="231" height="112"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="c7x-vb-iVd" firstAttribute="width" secondItem="rBw-T8-Snf" secondAttribute="width" multiplier="0.4" id="HHt-ws-BAs"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -63,8 +60,8 @@
             </collectionViewCellContentView>
             <size key="customSize" width="414" height="128"/>
             <connections>
-                <outlet property="changeLabel" destination="5Vo-kp-i6i" id="z5G-g5-h4a"/>
-                <outlet property="nameLabel" destination="c7x-vb-iVd" id="jI9-Sg-wlj"/>
+                <outlet property="amountLabel" destination="5Vo-kp-i6i" id="HPq-Ku-dgp"/>
+                <outlet property="currencyLabel" destination="c7x-vb-iVd" id="Eka-QT-ogS"/>
             </connections>
             <point key="canvasLocation" x="17" y="13"/>
         </collectionViewCell>

@@ -2,7 +2,7 @@
 //  PortfolioItemEntity+CoreDataProperties.swift
 //  pport
 //
-//  Created by Akmuhammet Ashyralyyev on 20.11.2022.
+//  Created by Akmuhammet Ashyralyyev on 24.11.2022.
 //
 //
 
@@ -16,7 +16,6 @@ extension PortfolioItemEntity {
         return NSFetchRequest<PortfolioItemEntity>(entityName: "PortfolioItemEntity")
     }
 
-    @NSManaged public var wallet: Data?
     @NSManaged public var portfolio: Data?
 
 }

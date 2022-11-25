@@ -70,4 +70,17 @@ extension String {
     func toNumber() -> Int? {
         return Int(self)
     }
+    
+    func fromTimeInterval() -> String {
+        if let doubleTimestamp = Double(self) {
+            let epochTime = TimeInterval(doubleTimestamp)
+            let date = Date(timeIntervalSince1970: epochTime)
+            let dateFormatter = DateFormatter()
+            dateFormatter.timeStyle = .medium
+            dateFormatter.dateStyle = .medium
+            dateFormatter.timeZone = .current
+            return dateFormatter.string(from: date)
+        }
+        return "---"
+    }
 }

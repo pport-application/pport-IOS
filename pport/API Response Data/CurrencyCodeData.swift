@@ -10,9 +10,10 @@ import Foundation
 struct CurrencyCodeData: Codable {
     var Code: String
     var Name: String
-    var Country: String
-    var Exchange: String
-    var `Type`: String
-    var ISIN: String?
+    var Country: String?
+    var Exchange: String?
+    var Currency: String?
+    var `Type`: String?
+    var Isin: String?
 }
 

@@ -22,6 +22,9 @@ enum CoreDataEntity: String{
     case watchlist = "WatchlistItemEntity"
     case history = "HistoryItemEntity"
     case portfolio = "PortfolioItemEntity"
+    case ticker = "TickerItemEntity"
+    case exchange = "ExchangeItemEntity"
+    case currency = "CurrencyItemEntity"
 }
 
 class CoreDataManager: NSObject {
@@ -29,14 +32,16 @@ class CoreDataManager: NSObject {
     static let shared: CoreDataManager = CoreDataManager()
     var context: NSManagedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    func store(entity: CoreDataEntity, attributes: [String: Any]) throws {
+    func store(entity: CoreDataEntity, attributes: [[String: Any]]) throws {
         guard let entity = NSEntityDescription.entity(forEntityName: entity.rawValue, in: context) else {
             throw CoreDataManagerError.noEntity
         }
-        let newObject = NSManagedObject(entity: entity, insertInto: context)
         
-        for key in attributes.keys {
-            newObject.setValue(attributes[key], forKey: key)
+        for attribute in attributes {
+            let newObject = NSManagedObject(entity: entity, insertInto: context)
+            for key in attribute.keys {
+                newObject.setValue(attribute[key], forKey: key)
+            }
         }
         
         do {
@@ -62,7 +67,18 @@ class CoreDataManager: NSObject {
 
         do {
             try context.execute(batchDeleteRequest)
+        } catch {
+            throw CoreDataManagerError.batchDelete
+        }
+    }
+    
+    func remove(entity: CoreDataEntity, attribute: String, value: String) throws {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: entity.rawValue)
+        request.predicate = NSPredicate(format: "\(attribute) == %@", value)
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: request)
 
+        do {
+            try context.execute(batchDeleteRequest)
         } catch {
             throw CoreDataManagerError.batchDelete
         }

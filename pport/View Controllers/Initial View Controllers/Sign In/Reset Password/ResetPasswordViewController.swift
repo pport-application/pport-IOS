@@ -25,9 +25,7 @@ class ResetPasswordViewController: BaseViewController {
     private func setUI() {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
-        passwordTextField.autocorrectionType = .no
         passwordTextField.enablePasswordToggle()
-        confirmPasswordTextField.autocorrectionType = .no
         confirmPasswordTextField.enablePasswordToggle()
         
         passwordTextField.delegate = self

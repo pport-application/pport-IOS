@@ -15,7 +15,7 @@ class NavigationMenuBaseController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadTabBar()
-        delegate = self
+        self.delegate = self
         
         checkProfileInfo()
     }

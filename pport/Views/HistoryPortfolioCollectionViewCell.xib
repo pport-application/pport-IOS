@@ -242,13 +242,13 @@
             <size key="customSize" width="390" height="160"/>
             <connections>
                 <outlet property="balanceLabel" destination="B3c-15-mqC" id="9G7-JF-gsu"/>
+                <outlet property="chargeLabel" destination="B77-ff-n0O" id="1GT-bH-w2Y"/>
                 <outlet property="countLabel" destination="3Tb-67-GWL" id="9Xf-HP-SSz"/>
                 <outlet property="currencyLabel" destination="ob0-oT-AiE" id="ZzZ-Il-HTc"/>
                 <outlet property="fromLabel" destination="Dr8-7g-WyK" id="7k5-ko-axh"/>
-                <outlet property="revenueLabel" destination="B77-ff-n0O" id="J3Q-C9-uw8"/>
                 <outlet property="tickerLabel" destination="zVc-h4-QQ8" id="bqt-Nb-afv"/>
-                <outlet property="timestampLabel" destination="Zpk-ic-dlK" id="fWC-Zx-Eba"/>
-                <outlet property="typeLabel" destination="ob0-oT-AiE" id="mPJ-d1-m9z"/>
+                <outlet property="timestampLabel" destination="hvo-MV-xik" id="ylJ-jf-i4T"/>
+                <outlet property="typeLabel" destination="mwd-cx-Zrl" id="Mk5-lS-zae"/>
             </connections>
             <point key="canvasLocation" x="77.862595419847324" y="-139.43661971830986"/>
         </collectionViewCell>

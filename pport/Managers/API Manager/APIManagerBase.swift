@@ -32,29 +32,37 @@ class APIManagerBase: NSObject {
         }
         
         let task: URLSessionDataTask = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error -> Void in
-            
-            if error != nil {
-                NSLog("Error from server.", "")
-                NSLog(error!.localizedDescription, "")
-                onFailure(101, "Something went wrong. Please try again later.")
-                return
-            }
          
             guard let data = data else {
                 NSLog("URLSessionDataTask data - Unable to retrieve data", "")
-                onFailure(102, "Something went wrong. Please try again later.")
+                onFailure(100, "Something went wrong. Please try again later.")
                 return
             }
             
             if let httpResponse = response as? HTTPURLResponse {
-                if httpResponse.statusCode != 200 {
-                    NSLog("Error with status code " + String(httpResponse.statusCode), "")
-                    onFailure(httpResponse.statusCode, "Something went wrong. Please try again later.")
-                    return
+                if httpResponse.statusCode == 200 {
+                    onSuccess(data)
+                } else if httpResponse.statusCode == 401 {
+                    DispatchQueue.main.async {
+                        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.returnWelcomePageViewController()
+                    }
+                } else {
+                    if error != nil {
+                        NSLog("Error from server with code: \(httpResponse.statusCode), error: \(error!)", "")
+                        onFailure(httpResponse.statusCode, "Something went wrong. Please try again later.")
+                        return
+                    } else {
+                        let decoder = JSONDecoder()
+                        if let decodedData = try? decoder.decode(ErrorData.self, from: data) {
+                            onFailure(httpResponse.statusCode, decodedData.error)
+                            return
+                        }
+                        NSLog("Error from server with code: \(httpResponse.statusCode), error is nill", "")
+                        onFailure(httpResponse.statusCode, "Something went wrong. Please try again later.")
+                        return
+                    }
                 }
             }
-            onSuccess(data)
-            return
         })
         task.resume()
     }

@@ -15,7 +15,7 @@ class HistoryPortfolioCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var currencyLabel: UILabel!
     @IBOutlet weak var countLabel: UILabel!
-    @IBOutlet weak var revenueLabel: UILabel!
+    @IBOutlet weak var chargeLabel: UILabel!
     @IBOutlet weak var balanceLabel: UILabel!
     @IBOutlet weak var timestampLabel: UILabel!
     
@@ -59,26 +59,17 @@ class HistoryPortfolioCollectionViewCell: UICollectionViewCell {
             return
         }
         
-        guard let from = item.from, let ticker = item.ticker, let type = item.type, let currency = item.currency, let count = item.count, let revenue = item.revenue, let balance = item.balance, let timestamp = item.timestamp else {
+        guard let from = item.from, let ticker = item.ticker, let type = item.type, let currency = item.currency, let count = item.count, let charge = item.charge, let balance = item.balance, let timestamp = item.timestamp else {
             return
         }
         self.fromLabel.text = from
-        self.typeLabel.text = type
+        self.typeLabel.text = type == "-1" ? "withdraw" : (type == "1" ? "deposit" : "---")
         self.tickerLabel.text = ticker
         self.currencyLabel.text = currency
         self.countLabel.text = count
-        self.revenueLabel.text = revenue
+        self.chargeLabel.text = charge
         self.balanceLabel.text = balance
-        if let doubleTimestamp = Double(timestamp) {
-            let epochTime = TimeInterval(doubleTimestamp)
-            let date = Date(timeIntervalSince1970: epochTime)
-            let dateFormatter = DateFormatter()
-            dateFormatter.timeStyle = .medium
-            dateFormatter.dateStyle = .medium
-            dateFormatter.timeZone = .current
-            let localDate = dateFormatter.string(from: date)
-            self.timestampLabel.text = "\(localDate)"
-        }
+        self.timestampLabel.text = timestamp.fromTimeInterval()
     }
 }
 
@@ -132,23 +123,19 @@ class HistoryWalletCollectionViewCell: UICollectionViewCell {
         }
         
         guard let from = item.from, let currency = item.currency, let type = item.type, let timestamp = item.timestamp, let amount = item.amount, let balance = item.balance else {
+            self.fromLabel.text = "---"
+            self.currencyLabel.text =  "---"
+            self.typeLabel.text =  "---"
+            self.timestampLabel.text = "---"
+            self.amountLabel.text =  "---.-"
+            self.balanceLabel.text =  "---.-"
             return
         }
         self.fromLabel.text = from
         self.currencyLabel.text = currency
-        self.typeLabel.text = type
-        if let doubleTimestamp = Double(timestamp) {
-            let epochTime = TimeInterval(doubleTimestamp)
-            let date = Date(timeIntervalSince1970: epochTime)
-            let dateFormatter = DateFormatter()
-            dateFormatter.timeStyle = .medium
-            dateFormatter.dateStyle = .medium
-            dateFormatter.timeZone = .current
-            let localDate = dateFormatter.string(from: date)
-            self.timestampLabel.text = "\(localDate)"
-        }
+        self.typeLabel.text = type == "-1" ? "withdraw" : (type == "1" ? "deposit" : "---")
+        self.timestampLabel.text = timestamp.fromTimeInterval()
         self.amountLabel.text = amount
         self.balanceLabel.text = balance
-        NSLog("Labels are set", "")
     }
 }

@@ -45,19 +45,24 @@ class ProfileViewModel {
             return
         }
         
-        APIManager.shared.getUserInfo(token: token, session: session, onFailure: { title, body in
-            DispatchQueue.main.async {
-                self.showPopUp.send(PopUpCombine(title: title, body: body))
-            }
-        }, onSuccess: { data in
-            UserDefaultsManager.shared.update(forKey: "name", value: data.name)
-            UserDefaultsManager.shared.update(forKey: "surname", value: data.surname)
-            UserDefaultsManager.shared.update(forKey: "email", value: data.email)
+        NetworkManager.shared.check(isAvailable: {
+            APIManager.shared.getUserInfo(token: token, session: session, onFailure: { title, body in
+                DispatchQueue.main.async {
+                    self.showPopUp.send(PopUpCombine(title: title, body: body))
+                }
+            }, onSuccess: { data in
+                UserDefaultsManager.shared.update(forKey: "name", value: data.name)
+                UserDefaultsManager.shared.update(forKey: "surname", value: data.surname)
+                UserDefaultsManager.shared.update(forKey: "email", value: data.email)
+                
+                DispatchQueue.main.async {
+                    self.setProfile.send(ProfileCombine(name: data.name, surname: data.surname, email: data.email))
+                }
+            })
+        }, notAvailable: {
             
-            DispatchQueue.main.async {
-                self.setProfile.send(ProfileCombine(name: data.name, surname: data.surname, email: data.email))
-            }
         })
+
     }
     
     func saveANDlogutBtnTapped() {

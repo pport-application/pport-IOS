@@ -9,13 +9,13 @@ import Foundation
 
 struct WatchlistData: Codable {
     var code: String
-    var timestamp: Int32?
+    var timestamp: Int64?
     var gmtoffset: Float?
     var open: Float?
     var high: Float?
     var low: Float?
     var close: Float?
-    var volume: Int32?
+    var volume: Int64?
     var previousClose: Float?
     var change: Float?
     var change_p: Float?
@@ -34,8 +34,8 @@ struct WatchlistData: Codable {
         case change_p = "change_p"
     }
     
-    init(code: String, timestamp: Int32?, gmtoffset: Float?, open: Float?, high: Float?, low: Float?,
-         close: Float?, volume: Int32?, previousClose: Float?, change: Float?, change_p: Float) {
+    init(code: String, timestamp: Int64?, gmtoffset: Float?, open: Float?, high: Float?, low: Float?,
+         close: Float?, volume: Int64?, previousClose: Float?, change: Float?, change_p: Float) {
         self.code = code
         self.timestamp = timestamp
         self.gmtoffset = gmtoffset
@@ -53,7 +53,7 @@ struct WatchlistData: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.code = try container.decode(String.self, forKey: .code)
         do {
-            self.timestamp = try container.decode(Int32.self, forKey: .timestamp)
+            self.timestamp = try container.decode(Int64.self, forKey: .timestamp)
         } catch DecodingError.typeMismatch {
             self.timestamp = nil
         }
@@ -83,7 +83,7 @@ struct WatchlistData: Codable {
             self.close = nil
         }
         do {
-            self.volume = try container.decode(Int32.self, forKey: .volume)
+            self.volume = try container.decode(Int64.self, forKey: .volume)
         } catch DecodingError.typeMismatch {
             self.volume = nil
         }

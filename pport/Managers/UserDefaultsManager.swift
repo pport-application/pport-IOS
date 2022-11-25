@@ -34,5 +34,8 @@ class UserDefaultsManager: NSObject {
         UserDefaults.standard.removeObject(forKey: "name")
         UserDefaults.standard.removeObject(forKey: "surname")
         UserDefaults.standard.removeObject(forKey: "watchlist")
+        UserDefaults.standard.removeObject(forKey: "exchange")
+        UserDefaults.standard.removeObject(forKey: "watchlist")
+        UserDefaults.standard.removeObject(forKey: "currency")
     }
 }
