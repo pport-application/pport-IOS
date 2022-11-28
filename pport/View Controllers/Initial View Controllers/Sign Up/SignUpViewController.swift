@@ -52,7 +52,8 @@ class SignUpViewController: BaseViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(termsAndConditionsLabelTapped))
         self.termsAndConditionsLabel.isUserInteractionEnabled = true
         self.termsAndConditionsLabel.addGestureRecognizer(tap)
-        self.termsAndConditionsBtn.backgroundColor = UIColor.gray
+        self.termsAndConditionsLabel.layer.cornerRadius = 8
+        self.termsAndConditionsBtn.tintColor = UIColor.gray
     }
     
     @IBAction func goBackBtnTapped(_ sender: Any) {
@@ -111,9 +112,9 @@ class SignUpViewController: BaseViewController {
     @IBAction func termsAndConditionsBtnTapped(_ sender: Any) {
         self.isAccepted = !self.isAccepted
         if self.isAccepted {
-            self.termsAndConditionsBtn.backgroundColor = UIColor.green
+            self.termsAndConditionsBtn.tintColor = UIColor.green
         } else {
-            self.termsAndConditionsBtn.backgroundColor = UIColor.gray
+            self.termsAndConditionsBtn.tintColor = UIColor.gray
         }
     }
     
@@ -121,7 +122,7 @@ class SignUpViewController: BaseViewController {
         guard let url = URL(string: "https://pport-application.github.io/Licences/eula.html") else { return }
         UIApplication.shared.open(url, options: [:], completionHandler: { _ in 
             self.isAccepted = true
-            self.termsAndConditionsBtn.backgroundColor = UIColor.green
+            self.termsAndConditionsBtn.tintColor = UIColor.green
         })
         
     }
