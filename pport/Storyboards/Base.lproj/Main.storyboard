@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -229,11 +230,37 @@
                                                             </stackView>
                                                         </subviews>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="MHA-3k-kGY">
-                                                        <rect key="frame" x="24" y="695.5" width="366" height="94.5"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="MHA-3k-kGY">
+                                                        <rect key="frame" x="24" y="663.5" width="366" height="126.5"/>
                                                         <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="a6k-Et-DO3">
+                                                                <rect key="frame" x="0.0" y="0.0" width="366" height="24"/>
+                                                                <subviews>
+                                                                    <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0d-2w-ldx">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" secondItem="b0d-2w-ldx" secondAttribute="height" multiplier="1:1" id="gPg-9D-ZSZ"/>
+                                                                        </constraints>
+                                                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <state key="normal" title="Button"/>
+                                                                        <buttonConfiguration key="configuration" style="filled" cornerStyle="large"/>
+                                                                        <connections>
+                                                                            <action selector="termsAndConditionsBtnTapped:" destination="AT7-MM-TUC" eventType="touchUpInside" id="Qn0-5S-Z92"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms and Conditions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y6J-hW-EGL">
+                                                                        <rect key="frame" x="40" y="0.0" width="326" height="24"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <color key="textColor" name="AccentColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="24" id="7Oa-MC-eWg"/>
+                                                                </constraints>
+                                                            </stackView>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="axJ-n4-QGg">
-                                                                <rect key="frame" x="0.0" y="0.0" width="366" height="60"/>
+                                                                <rect key="frame" x="0.0" y="28" width="366" height="60"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="60" id="cKQ-zD-rnU"/>
                                                                 </constraints>
@@ -253,7 +280,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gim-kE-f9P">
-                                                                <rect key="frame" x="0.0" y="60" width="366" height="34.5"/>
+                                                                <rect key="frame" x="0.0" y="92" width="366" height="34.5"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="plain" title="Go Back"/>
                                                                 <connections>
@@ -327,6 +354,8 @@
                         <outlet property="passwordTextField" destination="yNU-kG-wfL" id="GOU-Hr-fwf"/>
                         <outlet property="scrollView" destination="rfG-3b-zXd" id="kQP-fj-kTi"/>
                         <outlet property="surnameTextField" destination="7Cd-qn-hwH" id="xUe-mG-67w"/>
+                        <outlet property="termsAndConditionsBtn" destination="b0d-2w-ldx" id="uWo-aP-PBr"/>
+                        <outlet property="termsAndConditionsLabel" destination="y6J-hW-EGL" id="qa7-Nw-1Cu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VpS-JP-Lol" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -889,6 +918,9 @@
         </scene>
     </scenes>
     <resources>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
