@@ -16,34 +16,43 @@ class SignUpViewController: BaseViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var passwordConfirmTextField: UITextField!
+    @IBOutlet weak var termsAndConditionsLabel: UILabel!
+    @IBOutlet weak var termsAndConditionsBtn: UIButton!
+    
+    private var isAccepted: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUI()
+        self.setUI()
     }
     
     private func setUI() {
         self.navigationController?.navigationItem.hidesBackButton = true
         
-        passwordTextField.autocorrectionType = .no
-        passwordTextField.enablePasswordToggle()
-        passwordConfirmTextField.autocorrectionType = .no
-        passwordConfirmTextField.enablePasswordToggle()
+        self.passwordTextField.autocorrectionType = .no
+        self.passwordTextField.enablePasswordToggle()
+        self.passwordConfirmTextField.autocorrectionType = .no
+        self.passwordConfirmTextField.enablePasswordToggle()
         
         
-        nameTextField.delegate = self
-        surnameTextField.delegate = self
-        emailTextField.delegate = self
-        passwordTextField.delegate = self
-        passwordConfirmTextField.delegate = self
+        self.nameTextField.delegate = self
+        self.surnameTextField.delegate = self
+        self.emailTextField.delegate = self
+        self.passwordTextField.delegate = self
+        self.passwordConfirmTextField.delegate = self
         
-        nameTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        surnameTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        emailTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        passwordTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        passwordConfirmTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        self.nameTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        self.surnameTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        self.emailTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        self.passwordTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        self.passwordConfirmTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
 
-        scrollView.isScrollEnabled = false
+        self.scrollView.isScrollEnabled = false
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(termsAndConditionsLabelTapped))
+        self.termsAndConditionsLabel.isUserInteractionEnabled = true
+        self.termsAndConditionsLabel.addGestureRecognizer(tap)
+        self.termsAndConditionsBtn.backgroundColor = UIColor.gray
     }
     
     @IBAction func goBackBtnTapped(_ sender: Any) {
@@ -51,7 +60,11 @@ class SignUpViewController: BaseViewController {
     }
     
     @IBAction func signUpBtnTapped(_ sender: Any) {
-        // Input validation
+        if !self.isAccepted {
+            self.showPopUp(title: "Ups", body: "Please read and agree the Terms and Conditions")
+            return
+        }
+        
         guard let password = passwordTextField.text,
               let passwordConfirm = passwordConfirmTextField.text,
               let name = nameTextField.text,
@@ -61,19 +74,19 @@ class SignUpViewController: BaseViewController {
                   return
         }
         if name.count == 0 || surname.count == 0 || email.count == 0 {
-            showPopUp(title: "Missing Input", body: "Please enter all informations")
+            self.showPopUp(title: "Missing Input", body: "Please enter all informations")
             return
         }
         if !password.isValid(type: .password) {
-            showPopUp(title: "Invalid Password", body: "Your password must be at least 8 charecters and contain one digit, special charecter, uppercase and lowercase chareters")
+            self.showPopUp(title: "Invalid Password", body: "Your password must be at least 8 charecters and contain one digit, special charecter, uppercase and lowercase chareters")
             return
         }
         if (password != passwordConfirm) {
-            showPopUp(title: "Mismatching Passwords", body: "Please make sure that your passwords are same")
+            self.showPopUp(title: "Mismatching Passwords", body: "Please make sure that your passwords are same")
             return
         }
         if !email.isValid(type: .email) {
-            showPopUp(title: "Invalid Email", body: "Please enter valid email")
+            self.showPopUp(title: "Invalid Email", body: "Please enter valid email")
             return
         }
         
@@ -93,6 +106,24 @@ class SignUpViewController: BaseViewController {
         }, notAvailable: {
             self.showPopUp(title: "No Network", body: "Please check your network connection.")
         })
+    }
+    
+    @IBAction func termsAndConditionsBtnTapped(_ sender: Any) {
+        self.isAccepted = !self.isAccepted
+        if self.isAccepted {
+            self.termsAndConditionsBtn.backgroundColor = UIColor.green
+        } else {
+            self.termsAndConditionsBtn.backgroundColor = UIColor.gray
+        }
+    }
+    
+    @objc func termsAndConditionsLabelTapped() {
+        guard let url = URL(string: "https://pport-application.github.io/Licences/eula.html") else { return }
+        UIApplication.shared.open(url, options: [:], completionHandler: { _ in 
+            self.isAccepted = true
+            self.termsAndConditionsBtn.backgroundColor = UIColor.green
+        })
+        
     }
 }
 
