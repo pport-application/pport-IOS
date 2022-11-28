@@ -24,7 +24,6 @@
 		A1219D7627D2704C00131377 /* WatchlistData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1219D7527D2704C00131377 /* WatchlistData.swift */; };
 		A128260127AB161E00E1C11E /* WatchlistCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A128260027AB161E00E1C11E /* WatchlistCollectionViewCell.xib */; };
 		A12AA5BD27A703FD009E866C /* APIManagerBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12AA5BC27A703FD009E866C /* APIManagerBase.swift */; };
-		A12AA5C027A70635009E866C /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = A12AA5BF27A70635009E866C /* SwiftyJSON */; };
 		A12AA5C327A7084B009E866C /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12AA5C227A7084B009E866C /* UITextFieldExtension.swift */; };
 		A12DB9A527B01BBB00A87B27 /* PortfolioWalletCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A12DB9A427B01BBB00A87B27 /* PortfolioWalletCollectionViewCell.xib */; };
 		A12DB9A827B01D6700A87B27 /* PortfolioWalletCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12DB9A727B01D6700A87B27 /* PortfolioWalletCollectionViewCell.swift */; };
@@ -197,7 +196,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A12AA5C027A70635009E866C /* SwiftyJSON in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -524,7 +522,6 @@
 			);
 			name = pport;
 			packageProductDependencies = (
-				A12AA5BF27A70635009E866C /* SwiftyJSON */,
 			);
 			productName = pport;
 			productReference = A14C9B6127487BF700B9C36A /* pport.app */;
@@ -599,7 +596,6 @@
 			);
 			mainGroup = A14C9B5827487BF700B9C36A;
 			packageReferences = (
-				A12AA5BE27A70635009E866C /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = A14C9B6227487BF700B9C36A /* Products */;
 			projectDirPath = "";
@@ -898,11 +894,13 @@
 				DEVELOPMENT_TEAM = UM2MY82SD9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = pport/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = pport;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -926,11 +924,13 @@
 				DEVELOPMENT_TEAM = UM2MY82SD9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = pport/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = pport;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1080,25 +1080,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		A12AA5BE27A70635009E866C /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		A12AA5BF27A70635009E866C /* SwiftyJSON */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A12AA5BE27A70635009E866C /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
-			productName = SwiftyJSON;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		A1FB603327D14F6F00378AC0 /* pport.xcdatamodeld */ = {

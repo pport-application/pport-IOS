@@ -5,7 +5,6 @@
 //  Created by Akmuhammet Ashyralyyev on 31.01.2022.
 //
 
-import SwiftyJSON
 import Foundation
 
 class APIManager: NSObject {

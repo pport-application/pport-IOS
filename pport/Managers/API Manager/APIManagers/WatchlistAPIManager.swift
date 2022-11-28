@@ -7,9 +7,6 @@
 
 import Foundation
 
-import SwiftyJSON
-import Foundation
-
 extension APIManager {
     
     // MARK: Get Watchlist Data

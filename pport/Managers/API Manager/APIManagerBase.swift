@@ -6,11 +6,10 @@
 //
 
 import UIKit
-import SwiftyJSON
 
 class APIManagerBase: NSObject {
     
-    private let baseURL = "http://3.66.183.245/api/v1"
+    private let baseURL = "https://personalportfolio.app/api/v1"
     static let shared = APIManagerBase()
     
     func post(parameters: Data?, endpoint: String, auth: String?, onFailure: @escaping (Int, String)->Void, onSuccess: @escaping (Data)->Void) {

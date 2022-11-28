@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-import SwiftyJSON
 
 class SignUpViewController: BaseViewController {
     
@@ -80,13 +79,15 @@ class SignUpViewController: BaseViewController {
         
         // Establish Communication with backend
         NetworkManager.shared.check(isAvailable: {
-            APIManager.shared.signUp(name: name, surname: surname, email: email, password1: password, password2: passwordConfirm, onFailure: { title, body in
+            APIManager.shared.signUp(name: name, surname: surname, email: email, password1: password.encrypt(), password2: passwordConfirm.encrypt(), onFailure: { title, body in
                 DispatchQueue.main.async {
                     self.showPopUp(title: title, body: body)
                 }
             }, onSuccess: {
                 DispatchQueue.main.async {
-                    self.showPopUp(title: "Thank you", body: "You have succesfully registered")
+                    self.showPopUp(title: "Thank you", body: "You have succesfully registered", completion: {
+                        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.returnWelcomePageViewController()
+                    })
                 }
             })
         }, notAvailable: {

@@ -3,4 +3,54 @@
    uuid = "19125E07-C529-4751-807F-DBB8E19B16A1"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "70D88633-C744-4C5A-9D8E-173636C197E9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "pport/View Controllers/Initial View Controllers/Sign In/Reset Password/ResetPasswordViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "resetPasswordBtnTapped(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "70D88633-C744-4C5A-9D8E-173636C197E9 - 63d4dcc7a896940c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in pport.ResetPasswordViewController.resetPasswordBtnTapped(Any) -&gt; ()"
+                  moduleName = "pport"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/akmami/Desktop/pport/pport-IOS/pport/View%20Controllers/Initial%20View%20Controllers/Sign%20In/Reset%20Password/ResetPasswordViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "116">
+               </Location>
+               <Location
+                  uuid = "70D88633-C744-4C5A-9D8E-173636C197E9 - 52b7aba75ba9fb9c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.String, Swift.String) -&gt; () in closure #1 () -&gt; () in pport.ResetPasswordViewController.resetPasswordBtnTapped(Any) -&gt; ()"
+                  moduleName = "pport"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/akmami/Desktop/pport/pport-IOS/pport/View%20Controllers/Initial%20View%20Controllers/Sign%20In/Reset%20Password/ResetPasswordViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "256">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

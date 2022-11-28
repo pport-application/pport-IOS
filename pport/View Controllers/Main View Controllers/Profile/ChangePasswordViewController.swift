@@ -59,7 +59,7 @@ class ChangePasswordViewController: BaseViewController {
         }
         
         NetworkManager.shared.check(isAvailable: {
-            APIManager.shared.updatePassword(token: token, session: session, old_password: oldPassword, new_password: newPassword, new_password_confirm: confirmNewPassword, onFailure: { title, body in
+            APIManager.shared.updatePassword(token: token, session: session, old_password: oldPassword.encrypt(), new_password: newPassword.encrypt(), new_password_confirm: confirmNewPassword.encrypt(), onFailure: { title, body in
                 DispatchQueue.main.async {
                     self.showPopUp(title: title, body: body)
                 }
