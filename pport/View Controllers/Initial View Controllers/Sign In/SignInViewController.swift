@@ -51,7 +51,7 @@ class SignInViewController: BaseViewController {
         }
         
         NetworkManager.shared.check(isAvailable: {
-            APIManager.shared.signIn(email: email, password: password, onFailure: { title, body in
+            APIManager.shared.signIn(email: email, password: password.encrypt(), onFailure: { title, body in
                 DispatchQueue.main.async {
                     self.showPopUp(title: title, body: body)
                 }
@@ -67,7 +67,6 @@ class SignInViewController: BaseViewController {
                     "watchlist": data.watchlist
                 ] as [String : Any]
                 UserDefaultsManager.shared.set(params: attributes)
-                NSLog("SignInViewController.signInBtnTapped: Profile saved to UserDefaults succesfully", "")
                 
                 DispatchQueue.main.async {
                     let storyboard = UIStoryboard(name: "TabControllers", bundle: nil)

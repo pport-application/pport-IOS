@@ -53,14 +53,15 @@ class ResetPasswordViewController: BaseViewController {
             return
         }
         NetworkManager.shared.check(isAvailable: {
-            APIManager.shared.changePassword(email: email, reset_code: reset_code, password1: password, password2: passwordConfirm, onFailure: { title, body in
+            APIManager.shared.changePassword(email: email, reset_code: reset_code, password1: password.encrypt(), password2: passwordConfirm.encrypt(), onFailure: { title, body in
                 DispatchQueue.main.async {
                     self.showPopUp(title: title, body: body)
                 }
             }, onSuccess: {
                 DispatchQueue.main.async {
-                    self.showPopUp(title: "Success", body: "The password has been succesfully changed")
-                    (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.returnWelcomePageViewController()
+                    self.showPopUp(title: "Success", body: "The password has been succesfully changed", completion: {
+                        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.returnWelcomePageViewController()
+                    })
                 }
             })
         }, notAvailable: {

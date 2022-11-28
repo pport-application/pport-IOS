@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CryptoKit
 
 enum StringType: String {
     case password
@@ -82,5 +83,9 @@ extension String {
             return dateFormatter.string(from: date)
         }
         return "---"
+    }
+    
+    func encrypt() -> String {
+        return SHA512.hash(data: Data(self.utf8)).compactMap{ String(format: "%02x", $0) }.joined()
     }
 }

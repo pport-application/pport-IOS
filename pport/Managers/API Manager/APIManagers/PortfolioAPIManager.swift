@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftyJSON
 
 extension APIManager {
     

@@ -56,8 +56,6 @@ class WatchlistViewModel {
         if let session = KeyChainManager.shared.read(service: .session, type: Session.self) {
             self.session = session.session
         }
-        NSLog("KeyChainManager for session in WatchlistViewModel \(String(describing: session))", "")
-        NSLog("KeyChainManager for token in WatchlistViewModel \(String(describing: token))", "")
         
         do {
             self.exchanges = (try CoreDataManager.shared.fetch(entity: .exchange) as? [ExchangeItemEntity])?.sorted(by: {$0.country ?? "" < $1.country ?? ""})
